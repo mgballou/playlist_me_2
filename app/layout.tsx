@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
+import Header from '@/components/shared/Header'
 
 const fontSans = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -23,6 +24,7 @@ export default function RootLayout({
                     fontSans.variable
                 )}
             >
+                <Header/>
                 {children}
             </body>
         </html>
