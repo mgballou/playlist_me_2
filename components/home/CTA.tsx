@@ -1,4 +1,5 @@
 import { Button } from '../ui/button'
+import CTAButton from './CTAButton'
 
 interface Props {
     props: any
@@ -14,9 +15,7 @@ export default function CTA() {
                 Create playlists. Discover new music. Revisit your favorites.
             </p>
             <div className="mt-8 space-x-4">
-                <Button variant={'cta'} size={'xl'}>
-                    start
-                </Button>
+                <CTAButton/>
                 <Button variant={'secondary'} size={'xl'}>
                     info
                 </Button>
