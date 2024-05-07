@@ -9,14 +9,14 @@ export default function CTA() {
     return (
         <div className="my-auto w-1/2 p-4">
             <h1 className="text-3xl font-bold tracking-wide">
-                A <span className="italic">better</span> playlist generator
+                A <span className="italic text-yellow-400">better</span> playlist generator
             </h1>
             <p className="mt-2 text-xl">
                 Create playlists. Discover new music. Revisit your favorites.
             </p>
             <div className="mt-8 space-x-4">
                 <CTAButton/>
-                <Button variant={'secondary'} size={'xl'}>
+                <Button className="hover:bg-teal-200/10" variant={'outline'} size={'xl'}>
                     info
                 </Button>
             </div>
