@@ -23,7 +23,7 @@ export default function CTAButton() {
             }}
             
             size="xl"
-            className="radial-gradient relative hover:bg-teal-200/10"
+            className="radial-gradient relative hover:bg-emerald-200/25"
             variant={'ghost'}
         >
             <span className="linear-mask relative block h-full w-full">
