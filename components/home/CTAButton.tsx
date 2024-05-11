@@ -1,9 +1,12 @@
+import { useRouter } from 'next/navigation'
 
 import { Button } from '../ui/button'
 
 export default function CTAButton() {
+    const router = useRouter()
     return (
         <Button
+            onClick={() => router.push('/generator')}
             initial={{ '--x': '100%', scale: 1 } as any}
             animate={{ '--x': '-100%' } as any}
             whileTap={{ scale: 0.92 }}
