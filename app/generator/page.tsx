@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { getTrackData, getAPIToken } from '../actions'
 import { useEffect, useState } from 'react'
+import TrackCard from '@/components/shared/TrackCard'
 
 interface SpotifyTrack {
     tName: string
@@ -10,7 +11,6 @@ interface SpotifyTrack {
     tLink: string
     spotifyId: string
     albumArtwork: string
-  
 }
 
 
@@ -42,15 +42,15 @@ export default function Generator() {
             </Button>
             
 
-            <div className='flex flex-row flex-wrap gap-2 bg-slate-600 inset-4 w-full h-60'>
+            <div className='flex flex-row flex-wrap gap-2 bg-slate-600 inset-4 w-full min-h-60 justify-center'>
 
                 {results?.map((track, idx) => {
-                    return (<>
-                    
+                    return (<div key={track.spotifyId}>
+                    <TrackCard key={track.spotifyId} track={track}/>
+
 
                     
-                    
-                    </>)
+                    </div>)
 
                 })}
 

@@ -50,7 +50,7 @@ export async function getTrackData(tracks: string[]) {
 
     // TODO: remove any
     const params = new URLSearchParams({
-        limit: 5,
+        limit: 12,
         market: 'US',
         seed_artists: '',
         seed_genres: '',
