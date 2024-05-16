@@ -1,5 +1,3 @@
-'use client'
-
 import { Button } from '@/components/ui/button'
 import { getTrackData, getAPIToken } from '../actions'
 import { useEffect, useState } from 'react'
@@ -14,35 +12,23 @@ interface SpotifyTrack {
 }
 
 
-export default function Generator() {
+export default async function Generator() {
     const tracks = ['1xzBco0xcoJEDXktl7Jxrr']
-    const [results, setResults] = useState<null | SpotifyTrack[]>()
-
-    useEffect(() => {
-
-        async function getData(){
-            const data = await getTrackData(tracks)
-            setResults(data)
-        }
-
-        getData()
-
-    }, [])
-
-    
+    const results: SpotifyTrack[] = await getTrackData(tracks)
+   
 
     return (
         <main className="flex min-h-screen flex-col justify-evenly p-24">
             Welcome 2 generator
-            <Button onClick={async () => await getTrackData(tracks)}>
+            {/* <Button onClick={async () => await getTrackData(tracks)}>
                 Dummy results
             </Button>
             <Button onClick={async () => await getAPIToken()}>
                 Dummy Token
-            </Button>
+            </Button> */}
             
 
-            <div className='flex flex-row flex-wrap gap-2 bg-slate-600 inset-4 w-full min-h-60 justify-center'>
+            <div className='flex flex-row flex-wrap gap-2 bg-slate-600 inset-4 w-full min-h-60 justify-center p-4'>
 
                 {results?.map((track, idx) => {
                     return (<div key={track.spotifyId}>
