@@ -2,6 +2,7 @@
 import { cookies } from 'next/headers'
 
 import axios from 'axios'
+import { URL } from 'url'
 
 interface SpotifyToken {
     access_token: string
@@ -10,6 +11,7 @@ interface SpotifyToken {
 }
 
 export async function getAPIToken() {
+    // are you calling this in your top level page?
     const clientId = process.env.SPOTIFY_CLIENT_ID
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
 
@@ -41,6 +43,8 @@ export async function getAPIToken() {
 }
 
 export async function getTrackData(tracks: string[]) {
+    // this entire thing can just be fetched in a server component instead
+
     const token = cookies().get('spotify_token')?.value ?? (await getAPIToken())
     console.log(token)
 
@@ -66,16 +70,40 @@ export async function getTrackData(tracks: string[]) {
         const responseData = await response.json()
         // TODO: completely restructure object remapping
         // remove any
-        const results = responseData.tracks?.map((track: any) => {
+        console.log(responseData.tracks[0])
+
+        const endpoint = 'https://api.spotify.com/v1/audio-features'
+
+        const secondParams = new URLSearchParams({
+            ids: responseData.tracks?.map((track: any) => {
+                return track.id
+            }),
+        })
+        const otherFeatures = await fetch(
+            endpoint + '?' + secondParams.toString(),
+            options
+        )
+        const otherFeaturesData = await otherFeatures.json()
+        console.log(otherFeaturesData)
+        // i need to also query get several tracks audio features to get figures like danceability
+        const results = responseData.tracks?.map((track: any, idx: number) => {
             return {
                 tName: track.name,
                 tArtist: track.artists[0].name,
                 tLink: track.external_urls.spotify,
                 spotifyId: track.id,
                 albumArtwork: track.album.images[1].url,
+                acousticness:
+                    otherFeaturesData.audio_features[idx].acousticness,
+                liveness: otherFeaturesData.audio_features[idx].liveness,
+                danceability:
+                    otherFeaturesData.audio_features[idx].danceability,
+                energy: otherFeaturesData.audio_features[idx].energy,
+                instrumentalness:
+                    otherFeaturesData.audio_features[idx].instrumentalness,
             }
         })
-        console.log(results)
+
         return results
     } catch (error) {
         console.log(error)
