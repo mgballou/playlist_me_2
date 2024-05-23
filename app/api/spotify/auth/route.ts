@@ -4,12 +4,6 @@ import { redirect } from 'next/navigation'
 export const revalidate = 3600
 
 export async function GET() {
-    // const existingToken = cookies().get('spotify-token')?.value
-
-    // if (existingToken) {
-    //     return new Response(JSON.stringify(existingToken), { status: 200 })
-    // }
-
     const clientId = process.env.SPOTIFY_CLIENT_ID
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
 
@@ -42,10 +36,6 @@ export async function GET() {
 
         const token = await res.json()
 
-        // cookies().set('spotify_token', token.access_token, {
-        //     maxAge: token.expires_in,
-        // })
-
         return new Response(JSON.stringify(token.access_token), { status: 200 })
     } catch (error) {
         console.error('Error during token fetch:', error)
@@ -55,7 +45,3 @@ export async function GET() {
         )
     }
 }
-
-// export async function GET(request: Request) {
-//     redirect('https://nextjs.org/')
-//   }

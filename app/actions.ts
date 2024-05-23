@@ -108,12 +108,3 @@ export async function getTrackData(tracks: string[]) {
 }
 
 export async function getTracksAdditionalFeatures(tracks: string[]) {}
-
-export async function getDataFromJSON() {
-    const filePath = path.join(process.cwd(), 'public', 'trackData.json')
-    const jsonData = fs.readFileSync(filePath, 'utf8')
-    const data = JSON.parse(jsonData)
-
-    console.log(data)
-    return data
-}

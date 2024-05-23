@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { getDataFromJSON, getTrackData } from '../actions'
+import {  getTrackData } from '../actions'
 import { useEffect, useState } from 'react'
 import TrackCard from '@/components/shared/TrackCard'
 import { SpotifyTrack } from '@/lib/types'
@@ -11,18 +11,22 @@ interface Props {
     results: SpotifyTrack[]
 }
 
-const tracks = ['1xzBco0xcoJEDXktl7Jxrr']
-
-export default async function Generator() {
-    console.log('generator')
-
+function pullJSON(){
     const filePath = path.join(process.cwd(), 'public', 'trackData.json');
     const jsonData = fs.readFileSync(filePath, 'utf8');
     const results: SpotifyTrack[] = JSON.parse(jsonData);
 
-    // const results: SpotifyTrack[] = await getDataFromJSON()
+    return results
     
+}
 
+const tracks = ['1xzBco0xcoJEDXktl7Jxrr']
+
+export default async function Generator() {
+
+    const results: SpotifyTrack[] = pullJSON()
+    // const results: SpotifyTrack[] = await getTrackData(tracks)
+    
     return (
         <main className="flex min-h-screen flex-col justify-evenly p-12">
             Welcome 2 generator
