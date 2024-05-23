@@ -7,36 +7,26 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from '@/components/ui/card'
+} from '../ui/card'
 import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
 import { Separator } from '../ui/separator'
-
-interface SpotifyTrack {
-    tName: string
-    tArtist: string
-    tLink: string
-    spotifyId: string
-    albumArtwork: string
-    acousticness: number
-    liveness: number
-    danceability: number
-    energy: number
-    instrumentalness: number
-}
+import { SpotifyTrack, TrackCardVariant } from '@/lib/types'
 
 interface Props {
     track: SpotifyTrack
+    variant: TrackCardVariant
 }
 
-export default function TrackCard({ track }: Props) {
-    function formatNumber(input: number) {
-        return Math.floor(input * 100)
-    }
+function formatNumber(input: number) {
+    return Math.floor(input * 100)
+}
+
+export default function TrackCard({ track, variant }: Props) {
     return (
         <>
             <div className="flex h-full flex-col">
-                <Card className=" flex w-80 flex-grow flex-col gap-2 ">
+                <Card className="flex w-80 flex-grow flex-col gap-2 ">
                     <div className="flex flex-grow flex-row border-b-4 border-slate-700">
                         <CardContent className="w-1/3 p-0">
                             <Image
@@ -117,9 +107,9 @@ export default function TrackCard({ track }: Props) {
                             <Button size={'sm'} className="h-6 w-1/2">
                                 Listen on Spotify
                             </Button>
-                            <Button size={'sm'} className="h-6 w-1/2">
+                            {variant === 'search' && <Button size={'sm'} className="h-6 w-1/2">
                                 Add/Remove Track
-                            </Button>
+                            </Button>}
                         </div>
                     </CardFooter>
                 </Card>

@@ -1,52 +1,50 @@
 'use server'
 import { cookies } from 'next/headers'
+import { SpotifyToken } from '@/lib/types'
+import path from 'path'
+import fs from 'fs'
 
-import axios from 'axios'
-import { URL } from 'url'
+// export async function getAPIToken() {
+//     // are you calling this in your top level page?
+//     const clientId = process.env.SPOTIFY_CLIENT_ID
+//     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
 
-interface SpotifyToken {
-    access_token: string
-    token_rype: string
-    expires_in: number
-}
+//     const url = `https://accounts.spotify.com/api/token?grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`
+
+//     const authOptions = {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded',
+//         },
+//     }
+
+//     try {
+//         const response = await (await fetch(url, authOptions)).json()
+
+//         if (response.statusText !== 'OK') {
+//             throw new Error(response.data.error)
+//         }
+
+//         const token = response.data
+
+//         return token.access_token
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 export async function getAPIToken() {
-    // are you calling this in your top level page?
-    const clientId = process.env.SPOTIFY_CLIENT_ID
-    const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
-
-    const authOptions = {
-        url: `https://accounts.spotify.com/api/token?grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`,
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-    }
-
-    try {
-        const response = await axios(authOptions)
-
-        if (response.statusText !== 'OK') {
-            throw new Error(response.data.error)
-        }
-
-        const token = response.data
-
-        cookies().set('spotify_token', token.access_token, {
-            maxAge: token.expires_in,
+    return (
+        await fetch('http://localhost:3000/api/spotify/auth', {
+            next: { revalidate: 3000 },
         })
-
-        return cookies().get('spotify_token')?.value
-    } catch (error) {
-        console.log(error)
-    }
+    ).json()
 }
 
 export async function getTrackData(tracks: string[]) {
     // this entire thing can just be fetched in a server component instead
 
-    const token = cookies().get('spotify_token')?.value ?? (await getAPIToken())
-    console.log(token)
+    const token = await getAPIToken()
 
     const url = 'https://api.spotify.com/v1/recommendations'
 
@@ -70,7 +68,6 @@ export async function getTrackData(tracks: string[]) {
         const responseData = await response.json()
         // TODO: completely restructure object remapping
         // remove any
-        console.log(responseData.tracks[0])
 
         const endpoint = 'https://api.spotify.com/v1/audio-features'
 
@@ -108,4 +105,15 @@ export async function getTrackData(tracks: string[]) {
     } catch (error) {
         console.log(error)
     }
+}
+
+export async function getTracksAdditionalFeatures(tracks: string[]) {}
+
+export async function getDataFromJSON() {
+    const filePath = path.join(process.cwd(), 'public', 'trackData.json')
+    const jsonData = fs.readFileSync(filePath, 'utf8')
+    const data = JSON.parse(jsonData)
+
+    console.log(data)
+    return data
 }
