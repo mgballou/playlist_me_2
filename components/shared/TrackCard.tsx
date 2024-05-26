@@ -30,18 +30,18 @@ export default function TrackCard({ track, variant }: Props) {
                     <div className="flex flex-grow flex-row border-b-4 border-slate-700">
                         <CardContent className="w-1/3 p-0">
                             <Image
-                                src={track.albumArtwork}
+                                src={track.artwork}
                                 width={'112'}
                                 height={'112'}
-                                alt={`Album artwork for ${track.tName} by ${track.tArtist}`}
+                                alt={`Album artwork for ${track.title} by ${track.artist}`}
                                 className=""
                             ></Image>
                         </CardContent>
                         <CardHeader className=" flex w-2/3 ">
                             <CardTitle className="text-sm">
-                                {track.tArtist}
+                                {track.artist}
                             </CardTitle>
-                            <CardDescription>{track.tName}</CardDescription>
+                            <CardDescription>{track.title}</CardDescription>
                         </CardHeader>
                     </div>
                     <CardFooter className="flex min-h-14 flex-col items-start gap-3 p-2">
@@ -109,9 +109,10 @@ export default function TrackCard({ track, variant }: Props) {
                             <Button size={'sm'} className="h-6 w-1/2">
                                 Listen on Spotify
                             </Button>
-                            {variant === 'search' && (
+                            {variant !== 'result' && (
                                 <Button size={'sm'} className="h-6 w-1/2">
-                                    Add/Remove Track
+                                    {variant === 'search' && 'Add'}
+                                    {variant === 'selection' && 'Remove'} Track
                                 </Button>
                             )}
                         </div>

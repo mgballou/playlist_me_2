@@ -1,9 +1,9 @@
 export interface SpotifyTrack {
-    tName: string
-    tArtist: string
-    tLink: string
+    title: string
+    artist: string
+    link: string
     spotifyId: string
-    albumArtwork: string
+    artwork: string
     acousticness: number
     liveness: number
     danceability: number
