@@ -34,7 +34,7 @@ export default async function Generator() {
                 {results?.map((track, idx) => {
                     return (
                         <div key={track.spotifyId}>
-                            <TrackCard key={track.spotifyId} track={track} variant={'result'}/>
+                            <TrackCard key={track.spotifyId} track={track} variant={'selection'}/>
                         </div>
                     )
                 })}

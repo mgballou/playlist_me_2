@@ -45,95 +45,79 @@ export default function TrackCard({ track, variant }: Props) {
                         </CardHeader>
                     </div>
                     <CardFooter className="flex min-h-14 flex-col items-start gap-3 p-2">
-                        <div className="items-evenly flex flex-row flex-wrap justify-center p-2">
-                            <Badge
-                                variant={'outline'}
-                                className="flex flex-col items-center"
-                            >
-                                {formatNumber(track.acousticness)}
-                                <Separator
-                                    orientation="horizontal"
-                                    className="mx-1"
-                                />
-                                Acousticness
-                            </Badge>
-                            <Badge
-                                variant={'outline'}
-                                className="flex flex-col items-center"
-                            >
-                                {formatNumber(track.liveness)}
-                                <Separator
-                                    orientation="horizontal"
-                                    className="mx-1"
-                                />
-                                Liveness
-                            </Badge>
-                            <Badge
-                                variant={'outline'}
-                                className="flex flex-col items-center"
-                            >
-                                {formatNumber(track.danceability)}
-                                <Separator
-                                    orientation="horizontal"
-                                    className="mx-1"
-                                />
-                                Danceability
-                            </Badge>
-                            <Badge
-                                variant={'outline'}
-                                className="flex flex-col items-center"
-                            >
-                                {formatNumber(track.energy)}
-                                <Separator
-                                    orientation="horizontal"
-                                    className="mx-1"
-                                />
-                                Energy
-                            </Badge>
-                            <Badge
-                                variant={'outline'}
-                                className="flex flex-col items-center"
-                            >
-                                {formatNumber(track.instrumentalness)}
-                                <Separator
-                                    orientation="horizontal"
-                                    className="mx-1"
-                                />
-                                Instrumentalness
-                            </Badge>
-                        </div>
+                        {variant !== 'selection' && (
+                            <div className="items-evenly flex flex-row flex-wrap justify-center p-2">
+                                <Badge
+                                    variant={'outline'}
+                                    className="flex flex-col items-center"
+                                >
+                                    {formatNumber(track.acousticness)}
+                                    <Separator
+                                        orientation="horizontal"
+                                        className="mx-1"
+                                    />
+                                    Acousticness
+                                </Badge>
+                                <Badge
+                                    variant={'outline'}
+                                    className="flex flex-col items-center"
+                                >
+                                    {formatNumber(track.liveness)}
+                                    <Separator
+                                        orientation="horizontal"
+                                        className="mx-1"
+                                    />
+                                    Liveness
+                                </Badge>
+                                <Badge
+                                    variant={'outline'}
+                                    className="flex flex-col items-center"
+                                >
+                                    {formatNumber(track.danceability)}
+                                    <Separator
+                                        orientation="horizontal"
+                                        className="mx-1"
+                                    />
+                                    Danceability
+                                </Badge>
+                                <Badge
+                                    variant={'outline'}
+                                    className="flex flex-col items-center"
+                                >
+                                    {formatNumber(track.energy)}
+                                    <Separator
+                                        orientation="horizontal"
+                                        className="mx-1"
+                                    />
+                                    Energy
+                                </Badge>
+                                <Badge
+                                    variant={'outline'}
+                                    className="flex flex-col items-center"
+                                >
+                                    {formatNumber(track.instrumentalness)}
+                                    <Separator
+                                        orientation="horizontal"
+                                        className="mx-1"
+                                    />
+                                    Instrumentalness
+                                </Badge>
+                            </div>
+                        )}
 
-                        <div className="space-between mb-4 flex w-full flex-row gap-3">
+                        <div className="space=evenly mb-4 flex w-full flex-row justify-center gap-3">
                             <Button size={'sm'} className="h-6 w-1/2">
                                 Listen on Spotify
                             </Button>
-                            {variant === 'search' && <Button size={'sm'} className="h-6 w-1/2">
-                                Add/Remove Track
-                            </Button>}
+                            {variant === 'search' && (
+                                <Button size={'sm'} className="h-6 w-1/2">
+                                    Add/Remove Track
+                                </Button>
+                            )}
                         </div>
                     </CardFooter>
                 </Card>
             </div>
-
-            {/* <div className="flex h-full flex-col">
-                <div className="bg-card flex w-40 flex-grow flex-col items-center gap-2">
-                    <Image
-                        src={track.albumArtwork}
-                        width={'128'}
-                        height={'128'}
-                        alt={`Album artwork for ${track.tName} by ${track.tArtist}`}
-                        className="mx-auto"
-                    ></Image>
-
-                    <div className="p-4">
-                        <ul>
-                            <li>{track.tArtist}</li>
-                            <li>{track.tName}</li>
-                            <li></li>
-                        </ul>
-                    </div>
-                </div>
-            </div> */}
         </>
     )
 }
