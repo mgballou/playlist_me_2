@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 
 import {
@@ -12,6 +14,7 @@ import { Button } from '../ui/button'
 import { Badge } from '../ui/badge'
 import { Separator } from '../ui/separator'
 import { SpotifyTrack, TrackCardVariant } from '@/lib/types'
+import { useTracksStore } from '@/context/providers/tracks-store-provider'
 
 interface Props {
     track: SpotifyTrack
@@ -23,6 +26,7 @@ function formatNumber(input: number) {
 }
 
 export default function TrackCard({ track, variant }: Props) {
+    const { addTrack } = useTracksStore((state) => state)
     return (
         <>
             <div className="flex h-full flex-col">
@@ -110,7 +114,7 @@ export default function TrackCard({ track, variant }: Props) {
                                 Listen on Spotify
                             </Button>
                             {variant !== 'result' && (
-                                <Button size={'sm'} className="h-6 w-1/2">
+                                <Button size={'sm'} className="h-6 w-1/2" onClick={() => addTrack(track.title)}>
                                     {variant === 'search' && 'Add'}
                                     {variant === 'selection' && 'Remove'} Track
                                 </Button>

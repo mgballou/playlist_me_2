@@ -1,4 +1,5 @@
 import Subnav from '@/components/generator/Subnav'
+import TracksSidebar from '@/components/generator/TracksSidebar'
 import { TracksStoreProvider } from '@/context/providers/tracks-store-provider'
 
 export default function GeneratorLayout({
@@ -15,7 +16,7 @@ export default function GeneratorLayout({
             <div className="flex flex-row">
                 <TracksStoreProvider>
                     <div className="w-1/3 border border-red-500">
-                        Sidebar goes here
+                        <TracksSidebar />
                     </div>
                     <div className="w-2/3 border border-red-500">
                         {/* children are search, adjustments, results */}
