@@ -20,6 +20,7 @@ export async function GET() {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: body.toString(),
+        next: {revalidate: 3600}
     }
 
     try {
