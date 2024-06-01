@@ -15,10 +15,9 @@ export default function GeneratorLayout({
 
             <div className="flex flex-row">
                 <TracksStoreProvider>
-                    <div className="w-1/3 border border-red-500">
-                        <TracksSidebar />
-                    </div>
-                    <div className="w-2/3 border border-red-500">
+                    <TracksSidebar />
+
+                    <div className="min-w-2/3">
                         {/* children are search, adjustments, results */}
                         {children}
                     </div>
