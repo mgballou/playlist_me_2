@@ -4,11 +4,11 @@ export interface SpotifyTrack {
     link: string
     spotifyId: string
     artwork: string
-    acousticness: number
-    liveness: number
-    danceability: number
-    energy: number
-    instrumentalness: number
+    acousticness?: number
+    liveness?: number
+    danceability?: number
+    energy?: number
+    instrumentalness?: number
 }
 
 export interface SpotifyToken {

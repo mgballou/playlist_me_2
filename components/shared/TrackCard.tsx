@@ -21,7 +21,10 @@ interface Props {
     variant: TrackCardVariant
 }
 
-function formatNumber(input: number) {
+function formatNumber(input: number | undefined) {
+    if (input === undefined) {
+        return 0
+    }
     return Math.floor(input * 100)
 }
 
@@ -114,7 +117,11 @@ export default function TrackCard({ track, variant }: Props) {
                                 Listen on Spotify
                             </Button>
                             {variant !== 'result' && (
-                                <Button size={'sm'} className="h-6 w-1/2" onClick={() => addTrack(track.title)}>
+                                <Button
+                                    size={'sm'}
+                                    className="h-6 w-1/2"
+                                    onClick={() => addTrack(track.spotifyId)}
+                                >
                                     {variant === 'search' && 'Add'}
                                     {variant === 'selection' && 'Remove'} Track
                                 </Button>
