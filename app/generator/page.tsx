@@ -18,7 +18,7 @@ export default async function Generator() {
                 {results?.map((track, idx) => {
                     return (
                         <TrackCard
-                            key={track.spotifyId}
+                            key={'search' + track.spotifyId}
                             track={track}
                             variant={'search'}
                         />

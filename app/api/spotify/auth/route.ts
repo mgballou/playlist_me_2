@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-export const revalidate = 3600
+export const cache = 'no-store'
 
 export async function GET() {
     const clientId = process.env.SPOTIFY_CLIENT_ID
@@ -20,11 +20,10 @@ export async function GET() {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: body.toString(),
-        next: {revalidate: 3600}
     }
 
     try {
-        const res = await fetch(url, authOptions,)
+        const res = await fetch(url, authOptions)
 
         if (!res.ok) {
             const errorData = await res.text()

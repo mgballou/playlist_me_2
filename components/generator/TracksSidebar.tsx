@@ -13,6 +13,16 @@ export default function TracksSidebar() {
 
     const [selections, setSelections] = useState<SpotifyTrack[]>([])
 
+    const trackCards = selections?.map((selection) => {
+        return (
+            <TrackCard
+                key={'sidebar' + selection.spotifyId}
+                variant={'selection'}
+                track={selection}
+            />
+        )
+    })
+
     async function getSelections() {
         if (tracks.length > 0) {
             try {
@@ -38,16 +48,8 @@ export default function TracksSidebar() {
     }, [tracks])
 
     return (
-        <div className={tracks.length > 0 ? 'w-1/3' : 'w-0'}>
-            {selections?.map((selection) => {
-                return (
-                    <TrackCard
-                        key={selection.spotifyId}
-                        variant={'selection'}
-                        track={selection}
-                    />
-                )
-            })}
+        <div className={(tracks.length > 0 ? 'w-1/3' : 'w-0') + 'bg-slate-400'}>
+            {trackCards}
         </div>
     )
 }

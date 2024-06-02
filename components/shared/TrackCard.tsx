@@ -15,6 +15,7 @@ import { Badge } from '../ui/badge'
 import { Separator } from '../ui/separator'
 import { SpotifyTrack, TrackCardVariant } from '@/lib/types'
 import { useTracksStore } from '@/context/providers/tracks-store-provider'
+import clsx from 'clsx'
 
 interface Props {
     track: SpotifyTrack
@@ -29,11 +30,16 @@ function formatNumber(input: number | undefined) {
 }
 
 export default function TrackCard({ track, variant }: Props) {
-    const { addTrack } = useTracksStore((state) => state)
+    const { tracks, addTrack, removeTrack } = useTracksStore((state) => state)
+
+    const selected = tracks.includes(track.spotifyId)
+    console.log(`${track.title} is selected? ${selected}`)
+
+    
     return (
         <>
-            <div className="flex h-full flex-col">
-                <Card className="flex w-80 flex-grow flex-col gap-2 ">
+            <div className="flex flex-col">
+                <Card className={clsx("flex w-80 flex-grow flex-col gap-2", { 'border-4 border-white': selected && variant === 'search' })}>
                     <div className="flex flex-grow flex-row border-b-4 border-slate-700">
                         <CardContent className="w-1/3 p-0">
                             <Image

@@ -5,15 +5,16 @@ import { SpotifyTrack } from '@/lib/types'
 export async function getAPIToken() {
     return (
         await fetch('http://localhost:3000/api/spotify/auth', {
-            next: { revalidate: 3600 },
+            cache: 'no-store',
         })
     ).json()
 }
 
 export async function getRecommendationsData(trackIds: string[]) {
     // this entire thing can just be fetched in a server component instead
-
+    console.log('getting recs')
     const token = await getAPIToken()
+    console.log({ token })
 
     const url = 'https://api.spotify.com/v1/recommendations'
 
@@ -35,6 +36,7 @@ export async function getRecommendationsData(trackIds: string[]) {
     try {
         const response = await fetch(url + '?' + params.toString(), options)
         if (!response.ok) {
+            // major rework to error handling needed
             // Handle non-OK responses, e.g., rate limiting (status code 429)
             if (response.status === 429) {
                 const retryAfter = response.headers.get('Retry-After')
@@ -57,10 +59,10 @@ export async function getRecommendationsData(trackIds: string[]) {
                 throw new Error('Too many requests')
             }
             // Handle other types of errors
+            console.log(response)
             throw new Error(`HTTP error! status: ${response.status}`)
         }
         const responseData = await response.json()
-
         // remove any
 
         // this section could be a second function that just takes the ids and grabs the rest of the data for better error handling
