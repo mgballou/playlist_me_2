@@ -12,7 +12,7 @@ export async function getAPIToken() {
 
 export async function getRecommendationsData(trackIds: string[]) {
     // this entire thing can just be fetched in a server component instead
-   
+
     const token = await getAPIToken()
 
     const url = 'https://api.spotify.com/v1/recommendations'
@@ -135,6 +135,49 @@ export async function getTrackData(trackIds: string[]) {
                 artwork: track.album.images[1].url,
             }
         })
+
+        return results
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function getSearchResults(query: string) {
+    const token = await getAPIToken()
+    const url = 'https://api.spotify.com/v1/search'
+    const params = new URLSearchParams({
+        q: query,
+        market: 'US',
+        type: 'track',
+    } as any)
+
+    const options = {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${token}` },
+    }
+
+    try {
+        const response = await fetch(url + '?' + params.toString(), options)
+
+        if (!response.ok) {
+            throw new Error(await response.json())
+        }
+
+        const responseData = await response.json()
+
+        const results = responseData.tracks.items.map(
+            (track: any, idx: number) => {
+                return {
+                    title: track.name,
+                    artist: track.artists[0].name,
+                    link: track.external_urls.spotify,
+                    spotifyId: track.id,
+                    artwork: track.album.images[1].url,
+                }
+            }
+        )
+
+        console.log(results)
 
         return results
     } catch (error) {
