@@ -11,6 +11,7 @@ export default function Search() {
     const [formData, setFormData] = useState({
         query: '',
     })
+
     const [searchResults, setSearchResults] = useState<SpotifyTrack[]>([])
 
     function handleFormChange(evt: ChangeEvent<HTMLInputElement>) {
@@ -31,7 +32,6 @@ export default function Search() {
                     name="query"
                     value={formData.query}
                     onChange={handleFormChange}
-                    
                     placeholder="find tracks..."
                 />
 
