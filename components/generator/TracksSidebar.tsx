@@ -12,23 +12,14 @@ export default function TracksSidebar() {
     const { tracks, addTrack, removeTrack } = useTracksStore((state) => state)
 
     const [selections, setSelections] = useState<SpotifyTrack[]>([])
-
-    const trackCards = selections?.map((selection) => {
-        return (
-            <TrackCard
-                key={'sidebar' + selection.spotifyId}
-                variant={'selection'}
-                track={selection}
-            />
-        )
-    })
+    
+    // function clearTracks(){} ?? in store
 
     async function getSelections() {
         if (tracks.length > 0) {
             try {
                 const response = await getTrackData(tracks)
                 if (Array.isArray(response)) {
-                    console.log(response)
                     setSelections(response)
                 } else {
                     console.error('Response is not an array:', response)
@@ -49,7 +40,15 @@ export default function TracksSidebar() {
 
     return (
         <div className={(tracks.length > 0 ? 'w-1/3' : 'w-0') + 'bg-slate-400'}>
-            {trackCards}
+            {selections?.map((selection) => {
+        return (
+            <TrackCard
+                key={'sidebar' + selection.spotifyId}
+                variant={'selection'}
+                track={selection}
+            />
+        )
+    })}
         </div>
     )
 }

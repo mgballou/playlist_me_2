@@ -23,19 +23,17 @@ interface Props {
 }
 
 function formatNumber(input: number | undefined) {
-    if (input === undefined) {
+    if (!input)  {
         return 0
     }
-    return Math.floor(input * 100)
+    return Math.round(input * 100)
 }
 
 export default function TrackCard({ track, variant }: Props) {
     const { tracks, addTrack, removeTrack } = useTracksStore((state) => state)
 
     const selected = tracks.includes(track.spotifyId)
-    console.log(`${track.title} is selected? ${selected}`)
 
-    
     return (
         <>
             <div className="flex flex-col">

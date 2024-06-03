@@ -14,7 +14,6 @@ import {
 
 export default function Subnav() {
     const pathname = usePathname()
-    console.log(pathname)
 
     const links = ['Search', 'Adjustments', 'Results']
 
@@ -22,6 +21,15 @@ export default function Subnav() {
         <>
             <Breadcrumb>
                 <BreadcrumbList>
+                    {pathname === '/generator' ? (
+                        <BreadcrumbPage>Generator</BreadcrumbPage>
+                    ) : (
+                        <BreadcrumbLink asChild>
+                            <Link href={'/generator'}>Generator</Link>
+                        </BreadcrumbLink>
+                    )}
+
+                    <BreadcrumbSeparator />
                     {links.map((link, idx) => {
                         const url = '/generator/' + link.toLowerCase()
 

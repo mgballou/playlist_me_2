@@ -12,9 +12,8 @@ export async function getAPIToken() {
 
 export async function getRecommendationsData(trackIds: string[]) {
     // this entire thing can just be fetched in a server component instead
-    console.log('getting recs')
+   
     const token = await getAPIToken()
-    console.log({ token })
 
     const url = 'https://api.spotify.com/v1/recommendations'
 
