@@ -79,10 +79,10 @@ export default function TracksSidebar() {
             {tracks.length > 0 && (
                 <div
                     className={
-                        'flex w-1/3 flex-col justify-start bg-slate-400 p-4'
+                        'flex max-h-screen w-1/3 flex-col justify-start bg-slate-400 p-4'
                     }
                 >
-                    <div className="flex h-12 flex-row justify-center">
+                    <div className=" flex h-12 flex-row justify-between">
                         <Button onClick={() => clearTracks()}>
                             Clear Selections
                         </Button>

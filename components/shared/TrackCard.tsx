@@ -16,6 +16,7 @@ import { Separator } from '../ui/separator'
 import { SpotifyTrack, TrackCardVariant } from '@/lib/types'
 import { useTracksStore } from '@/context/providers/tracks-store-provider'
 import clsx from 'clsx'
+import Link from 'next/link'
 
 interface Props {
     track: SpotifyTrack
@@ -23,7 +24,7 @@ interface Props {
 }
 
 function formatNumber(input: number | undefined) {
-    if (!input)  {
+    if (!input) {
         return 0
     }
     return Math.round(input * 100)
@@ -34,10 +35,22 @@ export default function TrackCard({ track, variant }: Props) {
 
     const selected = tracks.includes(track.spotifyId)
 
+    function handleAddRemoveTrack() {
+        if (selected) {
+            removeTrack(track.spotifyId)
+        } else {
+            addTrack(track.spotifyId)
+        }
+    }
+
     return (
         <>
             <div className="flex flex-col">
-                <Card className={clsx("flex w-80 flex-grow flex-col gap-2", { 'border-4 border-white': selected && variant === 'search' })}>
+                <Card
+                    className={clsx('flex w-72 flex-grow flex-col gap-2', {
+                        'border border-white': selected && variant === 'search',
+                    })}
+                >
                     <div className="flex flex-grow flex-row border-b-4 border-slate-700">
                         <CardContent className="w-1/3 p-0">
                             <Image
@@ -53,11 +66,19 @@ export default function TrackCard({ track, variant }: Props) {
                                 {track.artist}
                             </CardTitle>
                             <CardDescription>{track.title}</CardDescription>
+                            <Link
+                                className="text-xs"
+                                href={track.link}
+                                target="blank"
+                                rel="noopener noreferrer"
+                            >
+                                Listen on Spotify
+                            </Link>
                         </CardHeader>
                     </div>
                     <CardFooter className="flex min-h-14 flex-col items-start gap-3 p-2">
                         {variant !== 'selection' && (
-                            <div className="items-evenly flex flex-row flex-wrap justify-center p-2">
+                            <div className="items-evenly flex flex-row flex-wrap justify-center">
                                 <Badge
                                     variant={'outline'}
                                     className="flex flex-col items-center"
@@ -117,19 +138,29 @@ export default function TrackCard({ track, variant }: Props) {
                         )}
 
                         <div className="space=evenly mb-4 flex w-full flex-row justify-center gap-3">
-                            <Button size={'sm'} className="h-6 w-1/2">
-                                Listen on Spotify
-                            </Button>
-                            {variant !== 'result' && (
-                                <Button
-                                    size={'sm'}
-                                    className="h-6 w-1/2"
-                                    onClick={() => addTrack(track.spotifyId)}
-                                >
-                                    {variant === 'search' && 'Add'}
-                                    {variant === 'selection' && 'Remove'} Track
-                                </Button>
-                            )}
+                            {(variant === 'search' ||
+                                variant === 'selection') &&
+                                (selected ? (
+                                    <Button
+                                        size="sm"
+                                        className="h-6 w-1/2"
+                                        onClick={() =>
+                                            removeTrack(track.spotifyId)
+                                        }
+                                    >
+                                        Remove Track
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        size="sm"
+                                        className="h-6 w-1/2"
+                                        onClick={() =>
+                                            addTrack(track.spotifyId)
+                                        }
+                                    >
+                                        Add Track
+                                    </Button>
+                                ))}
                         </div>
                     </CardFooter>
                 </Card>
