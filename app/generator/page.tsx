@@ -12,8 +12,8 @@ export default async function Generator() {
     return (
         <main className="flex min-h-screen flex-col justify-evenly p-12">
             Generator
-            {/* <div className="inset-4 flex min-h-60 w-full flex-row flex-wrap justify-center gap-2 bg-slate-600 p-4">
-                {results?.map((track, idx) => {
+            <div className="inset-4 flex min-h-60 w-full flex-row flex-wrap justify-center gap-2 bg-slate-600 p-4">
+                {/* {results?.map((track, idx) => {
                     return (
                         <TrackCard
                             key={'search' + track.spotifyId}
@@ -21,8 +21,8 @@ export default async function Generator() {
                             variant={'search'}
                         />
                     )
-                })}
-            </div> */}
+                })} */}
+            </div>
         </main>
     )
 }

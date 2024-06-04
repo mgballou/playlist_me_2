@@ -62,23 +62,11 @@ export async function getRecommendationsData(trackIds: string[]) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
         const responseData = await response.json()
-        // remove any
-
-        // this section could be a second function that just takes the ids and grabs the rest of the data for better error handling
-
-        const endpoint = 'https://api.spotify.com/v1/audio-features'
-
-        const secondParams = new URLSearchParams({
-            ids: responseData.tracks?.map((track: any) => {
+        const otherFeaturesData = await getTracksAdditionalFeatures(
+            responseData.tracks?.map((track: any) => {
                 return track.id
-            }),
-        })
-        const otherFeatures = await fetch(
-            endpoint + '?' + secondParams.toString(),
-            options
+            })
         )
-        // handle error
-        const otherFeaturesData = await otherFeatures.json()
 
         const results = responseData.tracks?.map((track: any, idx: number) => {
             return {
@@ -165,6 +153,12 @@ export async function getSearchResults(query: string) {
 
         const responseData = await response.json()
 
+        const otherFeaturesData = await getTracksAdditionalFeatures(
+            responseData.tracks.items.map((track: any) => {
+                return track.id
+            })
+        )
+
         const results = responseData.tracks.items.map(
             (track: any, idx: number) => {
                 return {
@@ -173,13 +167,46 @@ export async function getSearchResults(query: string) {
                     link: track.external_urls.spotify,
                     spotifyId: track.id,
                     artwork: track.album.images[1].url,
+                    acousticness:
+                        otherFeaturesData.audio_features[idx].acousticness,
+                    liveness: otherFeaturesData.audio_features[idx].liveness,
+                    danceability:
+                        otherFeaturesData.audio_features[idx].danceability,
+                    energy: otherFeaturesData.audio_features[idx].energy,
+                    instrumentalness:
+                        otherFeaturesData.audio_features[idx].instrumentalness,
                 }
             }
         )
 
-        console.log(results)
-
         return results
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function getTracksAdditionalFeatures(trackIds: string[]) {
+    const token = await getAPIToken()
+
+    const endpoint = 'https://api.spotify.com/v1/audio-features'
+
+    const options = {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${token}` },
+    }
+
+    const secondParams = new URLSearchParams({
+        ids: trackIds,
+    } as any)
+
+    try {
+        const otherFeatures = await fetch(
+            endpoint + '?' + secondParams.toString(),
+            options
+        )
+        // handle error
+        const otherFeaturesData = await otherFeatures.json()
+        return otherFeaturesData
     } catch (error) {
         console.log(error)
     }
