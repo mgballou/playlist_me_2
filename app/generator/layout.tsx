@@ -16,11 +16,8 @@ export default function GeneratorLayout({
             <div className="flex flex-row">
                 <TracksStoreProvider>
                     <TracksSidebar />
-
-                    <div className="min-w-2/3">
-                        {/* children are search, adjustments, results */}
-                        {children}
-                    </div>
+                    {/* children are generator, search, adjustments, results */}
+                    {children}
                 </TracksStoreProvider>
             </div>
         </>

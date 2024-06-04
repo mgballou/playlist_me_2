@@ -11,7 +11,6 @@ export default function Search() {
     const [formData, setFormData] = useState({
         query: '',
     })
-
     const [searchResults, setSearchResults] = useState<SpotifyTrack[]>([])
 
     function handleFormChange(evt: ChangeEvent<HTMLInputElement>) {
@@ -25,7 +24,7 @@ export default function Search() {
     }
 
     return (
-        <main className="flex min-h-screen w-full flex-col justify-evenly p-12">
+        <main className="flex h-screen w-full flex-col justify-evenly p-4">
             <form className="inline-flex" onSubmit={handleSearch}>
                 <Input
                     type="search"
@@ -38,7 +37,7 @@ export default function Search() {
                 <Button type="submit">Search</Button>
             </form>
 
-            <div className="inset-4 flex min-h-60 w-full flex-row flex-wrap justify-center gap-2 bg-slate-600 p-4">
+            <div className="inset-4 flex min-h-60 w-full flex-row flex-wrap justify-center gap-2 overflow-scroll bg-slate-600 p-4">
                 {searchResults?.map((track, idx) => {
                     return (
                         <TrackCard
