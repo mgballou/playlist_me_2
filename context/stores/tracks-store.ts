@@ -7,12 +7,13 @@ export type TracksState = {
 export type TracksActions = {
     addTrack: (track: string) => void
     removeTrack: (track: string) => void
+    clearTracks: () => void
 }
 
 export type TracksStore = TracksState & TracksActions
 
 export const initTracksStore = (): TracksState => {
-    return {tracks: []}
+    return { tracks: [] }
 }
 
 export const defaultInitState: TracksState = {
@@ -30,5 +31,6 @@ export const createTracksStore = (
             set((state) => ({
                 tracks: state.tracks.filter((t) => t !== track),
             })),
+        clearTracks: () => set((state) => ({ tracks: [] })),
     }))
 }
