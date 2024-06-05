@@ -21,17 +21,8 @@ export default function Subnav() {
         <>
             <Breadcrumb>
                 <BreadcrumbList>
-                    {pathname === '/generator' ? (
-                        <BreadcrumbPage>Generator</BreadcrumbPage>
-                    ) : (
-                        <BreadcrumbLink asChild>
-                            <Link href={'/generator'}>Generator</Link>
-                        </BreadcrumbLink>
-                    )}
-
-                    <BreadcrumbSeparator />
                     {links.map((link, idx) => {
-                        const url = '/generator/' + link.toLowerCase()
+                        const url = '/generator/g/' + link.toLowerCase()
 
                         return (
                             <Fragment key={idx}>

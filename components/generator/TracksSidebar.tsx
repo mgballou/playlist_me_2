@@ -26,8 +26,6 @@ export default function TracksSidebar() {
     const pathname = usePathname()
     const router = useRouter()
 
-    console.log(pathname)
-
     const { tracks, addTrack, removeTrack, clearTracks } = useTracksStore(
         (state) => state
     )
@@ -36,15 +34,11 @@ export default function TracksSidebar() {
 
     function handleNextPage() {
         switch (pathname) {
-            case 'generator':
-                router.push('/generator/search')
+            case '/generator/g/search':
+                router.push('/generator/g/adjustments')
                 break
-            case '/generator/search':
-                router.push('/generator/adjustments')
-                break
-            case '/generator/adjustments':
-                router.push('/generator/results')
-                // Add logic for CASE_THREE here
+            case '/generator/g/adjustments':
+                router.push('/generator/g/results')
                 break
             default:
                 break
@@ -76,34 +70,30 @@ export default function TracksSidebar() {
 
     return (
         <>
-            {tracks.length > 0 && (
-                <div
-                    className={
-                        'flex max-h-screen w-1/3 flex-col justify-start bg-slate-400 p-4'
-                    }
-                >
-                    <div className=" flex h-12 flex-row justify-between">
-                        <Button onClick={() => clearTracks()}>
-                            Clear Selections
-                        </Button>
-                        <Button onClick={() => handleNextPage()}>
-                            Next Step
-                        </Button>
-                    </div>
-
-                    <div className="flex flex-col gap-2 overflow-scroll">
-                        {selections?.map((selection) => {
-                            return (
-                                <TrackCard
-                                    key={'sidebar' + selection.spotifyId}
-                                    variant={'selection'}
-                                    track={selection}
-                                />
-                            )
-                        })}
-                    </div>
+            <div
+                className={
+                    'flex h-[90vh] w-1/3 flex-col justify-start gap-6 p-4'
+                }
+            >
+                <div className="flex h-12 flex-row justify-between">
+                    <Button onClick={() => clearTracks()}>
+                        Clear Selections
+                    </Button>
+                    <Button onClick={() => handleNextPage()}>Next Step</Button>
                 </div>
-            )}
+
+                <div className="flex flex-col min-h-full gap-2 overflow-scroll bg-slate-600 ">
+                    {selections?.map((selection) => {
+                        return (
+                            <TrackCard
+                                key={'sidebar' + selection.spotifyId}
+                                variant={'selection'}
+                                track={selection}
+                            />
+                        )
+                    })}
+                </div>
+            </div>
         </>
     )
 }

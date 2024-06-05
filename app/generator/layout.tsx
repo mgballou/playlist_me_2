@@ -7,19 +7,5 @@ export default function GeneratorLayout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
-    return (
-        <>
-            <div className="flex w-full flex-row justify-center text-center">
-                <Subnav />
-            </div>
-
-            <div className="flex flex-row">
-                <TracksStoreProvider>
-                    <TracksSidebar />
-                    {/* children are generator, search, adjustments, results */}
-                    {children}
-                </TracksStoreProvider>
-            </div>
-        </>
-    )
+    return <>{children}</>
 }

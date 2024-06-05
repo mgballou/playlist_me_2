@@ -24,20 +24,24 @@ export default function Search() {
     }
 
     return (
-        <main className="flex h-screen w-full flex-col justify-evenly p-4">
-            <form className="inline-flex" onSubmit={handleSearch}>
-                <Input
-                    type="search"
-                    name="query"
-                    value={formData.query}
-                    onChange={handleFormChange}
-                    placeholder="find tracks..."
-                />
+        <main className="flex h-[90vh] w-full flex-col gap-6 p-4">
+            <div className="flex flex-row gap-4">
+                <form className="inline-flex w-full" onSubmit={handleSearch}>
+                    <Input
+                        type="search"
+                        name="query"
+                        value={formData.query}
+                        onChange={handleFormChange}
+                        placeholder="find tracks..."
+                        className=""
+                    />
 
-                <Button type="submit">Search</Button>
-            </form>
+                    <Button type="submit">Search</Button>
+                </form>
+                <Button onClick={() => setSearchResults([])}>Clear</Button>
+            </div>
 
-            <div className="inset-4 flex min-h-60 w-full flex-row flex-wrap justify-center gap-2 overflow-scroll bg-slate-600 p-4">
+            <div className=" inset-4 flex min-h-full w-full flex-row flex-wrap justify-center gap-2 bg-slate-600 overflow-scroll">
                 {searchResults?.map((track, idx) => {
                     return (
                         <TrackCard
