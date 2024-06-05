@@ -41,7 +41,7 @@ export default function Search() {
                 <Button onClick={() => setSearchResults([])}>Clear</Button>
             </div>
 
-            <div className=" inset-4 flex min-h-full w-full flex-row flex-wrap justify-center gap-2 bg-slate-600 overflow-scroll">
+            <div className="flex min-h-full w-full flex-row flex-wrap justify-center gap-2 bg-slate-600 overflow-scroll">
                 {searchResults?.map((track, idx) => {
                     return (
                         <TrackCard
