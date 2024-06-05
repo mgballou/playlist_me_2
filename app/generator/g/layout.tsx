@@ -1,5 +1,6 @@
 import Subnav from '@/components/generator/Subnav'
 import TracksSidebar from '@/components/generator/TracksSidebar'
+import { AdjustmentsStoreProvider } from '@/context/providers/adjustments-store-provider'
 import { TracksStoreProvider } from '@/context/providers/tracks-store-provider'
 
 export default function GLayout({
@@ -15,9 +16,11 @@ export default function GLayout({
 
             <div className="flex flex-row">
                 <TracksStoreProvider>
-                    <TracksSidebar />
-                    {/* children are search, adjustments, results */}
-                    {children}
+                    <AdjustmentsStoreProvider>
+                        <TracksSidebar />
+                        {/* children are search, adjustments, results */}
+                        {children}
+                    </AdjustmentsStoreProvider>
                 </TracksStoreProvider>
             </div>
         </>

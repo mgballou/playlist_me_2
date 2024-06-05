@@ -18,3 +18,14 @@ export interface SpotifyToken {
 }
 
 export type TrackCardVariant = 'search' | 'selection' | 'result'
+
+
+export type Feature = 'acousticness' | 'liveness' | 'danceability' | 'energy' | 'instrumentalness';
+
+export interface FeatureSliderProps {
+    feature: Feature
+    isActive: boolean
+    toggleFeature: (feature: Feature) => void;
+    value: number[]
+    updateValue: (feature: Feature, value: number[]) => void
+}
