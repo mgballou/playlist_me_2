@@ -5,9 +5,7 @@ import { Button } from '@/components/ui/button'
 import { useAdjustmentsStore } from '@/context/providers/adjustments-store-provider'
 import { Feature } from '@/lib/types'
 
-import { useEffect, useState } from 'react'
-
-
+import { useEffect, useRef, useState } from 'react'
 
 export default function Adjustments() {
     const features: Feature[] = [
@@ -18,27 +16,34 @@ export default function Adjustments() {
         'instrumentalness',
     ]
 
-    const { setAdjustments } = useAdjustmentsStore((state) => state)
+    const { adjustments, setAdjustments } = useAdjustmentsStore(
+        (state) => state
+    )
 
     const [activeFeatures, setActiveFeatures] = useState<
         Record<Feature, boolean>
     >({
-        acousticness: false,
-        liveness: false,
-        danceability: false,
-        energy: false,
-        instrumentalness: false,
+        acousticness: !!adjustments.acousticness,
+        liveness: !!adjustments.liveness,
+        danceability: !!adjustments.danceability,
+        energy: !!adjustments.energy,
+        instrumentalness: !!adjustments.instrumentalness,
     })
 
-    const [featureValues, setFeatureValues] = useState<Record<Feature, number[]>>(
-        {
-            acousticness: [0],
-            liveness:[0],
-            danceability: [0],
-            energy: [0],
-            instrumentalness: [0],
-        }
-    )
+    const [featureValues, setFeatureValues] = useState<
+        Record<Feature, number[]>
+    >({
+        acousticness: [adjustments.acousticness ? adjustments.acousticness : 0],
+        liveness: [adjustments.liveness ? adjustments.liveness : 0],
+        danceability: [adjustments.danceability ? adjustments.danceability : 0],
+        energy: [adjustments.energy ? adjustments.energy : 0],
+        instrumentalness: [
+            adjustments.instrumentalness ? adjustments.instrumentalness : 0,
+        ],
+    })
+    const activeFeaturesRef = useRef(activeFeatures);
+    const featureValuesRef = useRef(featureValues);
+
 
     function toggleFeature(feature: Feature) {
         setActiveFeatures((prevFeatures) => ({
@@ -51,25 +56,39 @@ export default function Adjustments() {
         setFeatureValues((prevValues) => ({ ...prevValues, [feature]: value }))
     }
 
-    function saveAdjustments(){
-        const adjustments: Partial<Record<Feature, number>> = {};
+    function saveAdjustments() {
+        console.log('saving...')
+        const newAdjustments: Partial<Record<Feature, number>> = {}
+
+        const currentActiveFeatures = activeFeaturesRef.current;
+        const currentFeatureValues = featureValuesRef.current;
 
         for (const feature of features) {
-            if (activeFeatures[feature]) {
-                adjustments[feature] = featureValues[feature][0];
+            if (currentActiveFeatures[feature]) {
+                newAdjustments[feature] = currentFeatureValues[feature][0];
             }
         }
-
-        setAdjustments(adjustments);
-
+        console.log({newAdjustments})
+        setAdjustments(newAdjustments)
+        console.log({adjustments})
+        
     }
+
+    // Update refs whenever state changes
+    useEffect(() => {
+        activeFeaturesRef.current = activeFeatures;
+    }, [activeFeatures]);
+
+    useEffect(() => {
+        featureValuesRef.current = featureValues;
+    }, [featureValues]);
 
     useEffect(() => {
         // Sync on component unmount
         return () => {
-            saveAdjustments();
-        };
-    }, []);
+            saveAdjustments()
+        }
+    }, [])
 
     return (
         <main className="flex h-[90vh] w-full flex-col gap-6 p-4">

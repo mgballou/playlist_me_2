@@ -1,6 +1,6 @@
 'use server'
 
-import { SpotifyTrack } from '@/lib/types'
+import { Feature, SpotifyTrack } from '@/lib/types'
 
 export async function getAPIToken() {
     return (
@@ -130,7 +130,7 @@ export async function getTracksAdditionalFeatures(trackIds: string[]) {
     }
 }
 
-export async function getRecommendationsData(trackIds: string[]) {
+export async function getRecommendationsData(trackIds: string[], adjustments?: Partial<Record<Feature, number>>) {
     // this entire thing can just be fetched in a server component instead
 
     const token = await getAPIToken()
@@ -139,14 +139,32 @@ export async function getRecommendationsData(trackIds: string[]) {
 
     const selectionsString = trackIds.join(',')
 
+    const targetAdjustments: Record<string, number> = {}
+
+    if (adjustments){
+        for (const key in adjustments){
+            const featureKey = key as Feature
+            if (adjustments[featureKey] !== undefined) {
+                targetAdjustments[`target_${featureKey}`] = adjustments[featureKey]!
+            }
+        }
+    }
+
     // TODO: remove any
-    const params = new URLSearchParams({
+    const baseParams ={
         limit: 12,
         market: 'US',
         seed_artists: '',
         seed_genres: '',
         seed_tracks: selectionsString,
-    } as any)
+    }
+
+    const paramsObject = {
+        ...baseParams,
+        ...(Object.keys(targetAdjustments).length > 0 ? targetAdjustments : {}),
+    };
+
+    const params = new URLSearchParams(paramsObject as any);
 
     const options = {
         method: 'GET',
