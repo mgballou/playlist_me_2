@@ -145,7 +145,7 @@ export async function getRecommendationsData(trackIds: string[], adjustments?: P
         for (const key in adjustments){
             const featureKey = key as Feature
             if (adjustments[featureKey] !== undefined) {
-                targetAdjustments[`target_${featureKey}`] = adjustments[featureKey]!
+                targetAdjustments[`target_${featureKey}`] = (adjustments[featureKey]!/100)
             }
         }
     }
