@@ -1,0 +1,60 @@
+'use client'
+
+import { getRecommendationsData } from '@/app/actions'
+import TrackCard from '@/components/shared/TrackCard'
+import { Button } from '@/components/ui/button'
+import { useAdjustmentsStore } from '@/context/providers/adjustments-store-provider'
+import { useTracksStore } from '@/context/providers/tracks-store-provider'
+import { SpotifyTrack } from '@/lib/types'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+
+export default function Results() {
+    const router = useRouter()
+
+    const { tracks, clearTracks } = useTracksStore((state) => state)
+    const { adjustments, setAdjustments } = useAdjustmentsStore(
+        (state) => state
+    )
+    const [recommendations, setRecommendations] = useState<SpotifyTrack[]>([])
+
+    async function getResults() {
+        const results = await getRecommendationsData(tracks, adjustments)
+        setRecommendations(results)
+    }
+
+    function startOver() {
+        clearTracks()
+        setAdjustments({})
+        router.push('/generator/g/search')
+    }
+
+    useEffect(() => {
+        getResults()
+    }, [])
+
+    return (
+        <main className="flex h-[90vh] w-full flex-col gap-6 p-4">
+            <div className="flex flex-row justify-center gap-4">
+                <Button onClick={() => getResults()}>More Songs</Button>
+                <Button onClick={() => startOver()}>Start Over</Button>
+            </div>
+
+            <div className="flex min-h-full w-full flex-row flex-wrap justify-center gap-2 overflow-scroll bg-slate-600">
+                {tracks.length > 0 ? (
+                    recommendations?.map((rec) => {
+                        return (
+                            <TrackCard
+                                key={'rec' + rec.spotifyId}
+                                track={rec}
+                                variant={'result'}
+                            />
+                        )
+                    })
+                ) : (
+                    <p>You must select tracks to get recommendations.</p>
+                )}
+            </div>
+        </main>
+    )
+}

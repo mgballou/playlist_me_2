@@ -79,7 +79,7 @@ export default function TracksSidebar() {
                     <Button onClick={() => clearTracks()}>
                         Clear Selections
                     </Button>
-                    <Button onClick={() => handleNextPage()} disabled={tracks.length === 0}>Next Step</Button>
+                    <Button onClick={() => handleNextPage()}>Next Step</Button>
                 </div>
 
                 <div className="flex flex-col min-h-full gap-2 overflow-scroll bg-slate-600 ">

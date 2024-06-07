@@ -57,7 +57,6 @@ export default function Adjustments() {
     }
 
     function saveAdjustments() {
-        console.log('saving...')
         const newAdjustments: Partial<Record<Feature, number>> = {}
 
         const currentActiveFeatures = activeFeaturesRef.current;
@@ -68,9 +67,9 @@ export default function Adjustments() {
                 newAdjustments[feature] = currentFeatureValues[feature][0];
             }
         }
-        console.log({newAdjustments})
+        
         setAdjustments(newAdjustments)
-        console.log({adjustments})
+        
         
     }
 

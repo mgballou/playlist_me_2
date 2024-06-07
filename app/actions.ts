@@ -152,7 +152,7 @@ export async function getRecommendationsData(trackIds: string[], adjustments?: P
 
     // TODO: remove any
     const baseParams ={
-        limit: 12,
+        limit: 6,
         market: 'US',
         seed_artists: '',
         seed_genres: '',
