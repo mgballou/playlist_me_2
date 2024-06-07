@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
 import Header from '@/components/shared/Header'
+import Footer from '@/components/shared/Footer'
 
 const fontSans = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -20,12 +21,13 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={cn(
-                    'dark mx-auto min-h-screen max-w-7xl bg-background font-sans antialiased',
+                    'dark mx-auto h-screen max-w-7xl bg-background font-sans antialiased',
                     fontSans.variable
                 )}
             >
                 <Header />
                 {children}
+                <Footer />
             </body>
         </html>
     )
