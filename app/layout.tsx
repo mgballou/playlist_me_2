@@ -21,12 +21,12 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={cn(
-                    'dark mx-auto h-screen max-w-7xl bg-background font-sans antialiased',
+                    'dark mx-auto flex h-dvh max-w-7xl flex-col bg-background font-sans antialiased',
                     fontSans.variable
                 )}
             >
                 <Header />
-                {children}
+                <div className="h-[90vh] flex-grow flex-col flex border border-red-500">{children}</div>
                 <Footer />
             </body>
         </html>

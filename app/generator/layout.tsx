@@ -7,5 +7,5 @@ export default function GeneratorLayout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
-    return <>{children}</>
+    return <div className="flex flex-grow flex-col h-full">{children}</div>
 }

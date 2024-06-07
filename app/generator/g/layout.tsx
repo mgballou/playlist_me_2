@@ -9,7 +9,7 @@ export default function GLayout({
     children: React.ReactNode
 }>) {
     return (
-        <>
+        <div className='flex flex-col flex-grow h-full'>
             <div className="flex w-full flex-row justify-center text-center">
                 <Subnav />
             </div>
@@ -23,6 +23,6 @@ export default function GLayout({
                     </AdjustmentsStoreProvider>
                 </TracksStoreProvider>
             </div>
-        </>
+        </div>
     )
 }

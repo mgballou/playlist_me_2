@@ -24,7 +24,7 @@ export default function Search() {
     }
 
     return (
-        <main className="flex h-[90vh] w-full flex-col gap-6 p-4">
+        <main className="flex h-full flex-grow w-full flex-col gap-6 p-4">
             <div className="flex flex-row gap-4">
                 <form className="inline-flex w-full" onSubmit={handleSearch}>
                     <Input
