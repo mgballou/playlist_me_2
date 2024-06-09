@@ -21,12 +21,17 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={cn(
-                    'dark mx-auto h-screen max-w-7xl bg-background font-sans antialiased',
+                    'dark mx-auto max-w-7xl bg-background font-sans antialiased',
                     fontSans.variable
                 )}
             >
                 <Header />
+
+                <main className="my-4 min-h-screen">
                 {children}
+                    
+                </main>
+                
                 <Footer />
             </body>
         </html>

@@ -41,9 +41,8 @@ export default function Adjustments() {
             adjustments.instrumentalness ? adjustments.instrumentalness : 0,
         ],
     })
-    const activeFeaturesRef = useRef(activeFeatures);
-    const featureValuesRef = useRef(featureValues);
-
+    const activeFeaturesRef = useRef(activeFeatures)
+    const featureValuesRef = useRef(featureValues)
 
     function toggleFeature(feature: Feature) {
         setActiveFeatures((prevFeatures) => ({
@@ -59,28 +58,26 @@ export default function Adjustments() {
     function saveAdjustments() {
         const newAdjustments: Partial<Record<Feature, number>> = {}
 
-        const currentActiveFeatures = activeFeaturesRef.current;
-        const currentFeatureValues = featureValuesRef.current;
+        const currentActiveFeatures = activeFeaturesRef.current
+        const currentFeatureValues = featureValuesRef.current
 
         for (const feature of features) {
             if (currentActiveFeatures[feature]) {
-                newAdjustments[feature] = currentFeatureValues[feature][0];
+                newAdjustments[feature] = currentFeatureValues[feature][0]
             }
         }
-        
+
         setAdjustments(newAdjustments)
-        
-        
     }
 
     // Update refs whenever state changes
     useEffect(() => {
-        activeFeaturesRef.current = activeFeatures;
-    }, [activeFeatures]);
+        activeFeaturesRef.current = activeFeatures
+    }, [activeFeatures])
 
     useEffect(() => {
-        featureValuesRef.current = featureValues;
-    }, [featureValues]);
+        featureValuesRef.current = featureValues
+    }, [featureValues])
 
     useEffect(() => {
         // Sync on component unmount
@@ -90,12 +87,12 @@ export default function Adjustments() {
     }, [])
 
     return (
-        <main className="flex h-[90vh] w-full flex-col gap-6 p-4">
+        <main className="col-span-2 h-[90vh] flex flex-col gap-6 p-2">
             <div className="flex flex-row justify-center gap-4">
                 <Button onClick={() => saveAdjustments()}>Save</Button>
                 <Button>Reset to Default</Button>
             </div>
-            <div className="flex min-h-full w-full flex-col gap-8 overflow-scroll bg-slate-600">
+            <div className="flex h-full w-full flex-col gap-8 overflow-scroll bg-slate-600">
                 {features?.map((feature) => {
                     return (
                         <FeatureSlider

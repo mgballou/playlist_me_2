@@ -72,7 +72,7 @@ export default function TracksSidebar() {
         <>
             <div
                 className={
-                    'flex h-[90vh] w-1/3 flex-col justify-start gap-6 p-4'
+                    'flex col-span-1 h-[90vh] flex-col justify-start gap-6 p-2'
                 }
             >
                 <div className="flex h-12 flex-row justify-between">
@@ -82,7 +82,7 @@ export default function TracksSidebar() {
                     <Button onClick={() => handleNextPage()}>Next Step</Button>
                 </div>
 
-                <div className="flex flex-col min-h-full gap-2 overflow-scroll bg-slate-600 ">
+                <div className="flex flex-col h-full gap-2 overflow-scroll bg-slate-600 items-center">
                     {selections?.map((selection) => {
                         return (
                             <TrackCard

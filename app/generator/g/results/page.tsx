@@ -34,13 +34,13 @@ export default function Results() {
     }, [])
 
     return (
-        <main className="flex h-[90vh] w-full flex-col gap-6 p-4">
+        <main className="col-span-2 h-[90vh] flex flex-col gap-6 p-2">
             <div className="flex flex-row justify-center gap-4">
                 <Button onClick={() => getResults()}>More Songs</Button>
                 <Button onClick={() => startOver()}>Start Over</Button>
             </div>
 
-            <div className="flex min-h-full w-full flex-row flex-wrap justify-center gap-2 overflow-scroll bg-slate-600">
+            <div className="flex h-full w-full flex-row flex-wrap justify-center gap-2 overflow-scroll bg-slate-600">
                 {tracks.length > 0 ? (
                     recommendations?.map((rec) => {
                         return (
