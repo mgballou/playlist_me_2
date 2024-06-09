@@ -24,7 +24,7 @@ export default function Search() {
     }
 
     return (
-        <main className="flex h-full flex-grow w-full flex-col gap-6 p-4">
+        <section className="col-span-3 flex h-[90vh] w-full flex-col gap-6 p-2">
             <div className="flex flex-row gap-4">
                 <form className="inline-flex w-full" onSubmit={handleSearch}>
                     <Input
@@ -41,7 +41,7 @@ export default function Search() {
                 <Button onClick={() => setSearchResults([])}>Clear</Button>
             </div>
 
-            <div className="flex min-h-full w-full flex-row flex-wrap justify-center gap-2 bg-slate-600 overflow-scroll">
+            <div className="flex h-full w-full flex-row flex-wrap gap-2 justify-center overflow-scroll bg-slate-600">
                 {searchResults?.map((track, idx) => {
                     return (
                         <TrackCard
@@ -52,6 +52,6 @@ export default function Search() {
                     )
                 })}
             </div>
-        </main>
+        </section>
     )
 }

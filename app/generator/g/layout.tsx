@@ -14,7 +14,7 @@ export default function GLayout({
                 <Subnav />
             </div>
 
-            <div className="flex flex-row">
+            <div className="grid grid-cols-4 gap-0">
                 <TracksStoreProvider>
                     <AdjustmentsStoreProvider>
                         <TracksSidebar />
