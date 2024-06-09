@@ -29,3 +29,11 @@ export interface FeatureSliderProps {
     value: number[]
     updateValue: (feature: Feature, value: number[]) => void
 }
+
+
+export interface MyLinks {
+    text: string
+    href: string
+    rel: string
+    target: string
+}
