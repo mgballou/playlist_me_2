@@ -1,0 +1,107 @@
+{
+    "slides": [
+      {
+        "input": [
+          {
+            "title": "Yeah! (feat. Lil Jon & Ludacris)",
+            "artist": "USHER",
+            "link": "https://open.spotify.com/track/5rb9QrpfcKFHM1EUbSIurX",
+            "spotifyId": "5rb9QrpfcKFHM1EUbSIurX",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e02365b3fb800c19f7ff72602da"
+          },
+          {
+            "title": "One, Two Step (feat. Missy Elliott)",
+            "artist": "Ciara",
+            "link": "https://open.spotify.com/track/7uKcScNXuO3MWw6LowBjW1",
+            "spotifyId": "7uKcScNXuO3MWw6LowBjW1",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e02c1e3659212de0f437bbf395e"
+          }
+        ],
+        "output": [
+          {
+            "title": "I'm Real (feat. Ja Rule) - Murder Remix",
+            "artist": "Jennifer Lopez",
+            "link": "https://open.spotify.com/track/6MLsahMK3VvH9NUwXOktdS",
+            "spotifyId": "6MLsahMK3VvH9NUwXOktdS",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e02bfa0a1de59696c7a6fe15ebb"
+          },
+          {
+            "title": "Bartender (feat. Akon)",
+            "artist": "T-Pain",
+            "link": "https://open.spotify.com/track/1RGIjMFMgJxkZHMDXVYzOJ",
+            "spotifyId": "1RGIjMFMgJxkZHMDXVYzOJ",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e02baf2f329d4feeb19761eddf4"
+          }
+        ]
+      },
+      {
+        "input": [
+          {
+            "title": "Believer",
+            "artist": "Imagine Dragons",
+            "link": "https://open.spotify.com/track/0pqnGHJpmpxLKifKRmU6WP",
+            "spotifyId": "0pqnGHJpmpxLKifKRmU6WP",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e025675e83f707f1d7271e5cf8a"
+          },
+          {
+            "title": "Ain't It Fun",
+            "artist": "Paramore",
+            "link": "https://open.spotify.com/track/3yrvQHw6pQemsrCQEpMnKv",
+            "spotifyId": "3yrvQHw6pQemsrCQEpMnKv",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e02fa94e7d8d2480cc906ba4441"
+          }
+        ],
+        "output": [
+          {
+            "title": "Never Too Late",
+            "artist": "Three Days Grace",
+            "link": "https://open.spotify.com/track/3HE50TVRquwXe9yv2HFoNL",
+            "spotifyId": "3HE50TVRquwXe9yv2HFoNL",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e02fa4c18fdbd1bf1a39b7b794f"
+          },
+          {
+            "title": "Somebody Told Me",
+            "artist": "The Killers",
+            "link": "https://open.spotify.com/track/6PwjJ58I4t7Mae9xfZ9l9v",
+            "spotifyId": "6PwjJ58I4t7Mae9xfZ9l9v",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e02ccdddd46119a4ff53eaf1f5d"
+          }
+        ]
+      },
+      {
+        "input": [
+          {
+            "title": "Super Freak",
+            "artist": "Rick James",
+            "link": "https://open.spotify.com/track/2dCmGcEOQrMQhMMS8Vj7Ca",
+            "spotifyId": "2dCmGcEOQrMQhMMS8Vj7Ca",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e0217f9e7e7784ed40b223e261c"
+          },
+          {
+            "title": "Flash Light",
+            "artist": "Parliament",
+            "link": "https://open.spotify.com/track/1v1PV2wERHiMPesMWX0qmO",
+            "spotifyId": "1v1PV2wERHiMPesMWX0qmO",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e02dadce998f88dba71c98adf88"
+          }
+        ],
+        "output": [
+          {
+            "title": "Slide",
+            "artist": "Slave",
+            "link": "https://open.spotify.com/track/2du5UEJ0j38dZsbh9uSz7S",
+            "spotifyId": "2du5UEJ0j38dZsbh9uSz7S",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e02313ef0c487d4b154e66f6cee"
+          },
+          {
+            "title": "The Rubberband Man",
+            "artist": "The Spinners",
+            "link": "https://open.spotify.com/track/5XVb0qfmmkmmsyy7j8oObk",
+            "spotifyId": "5XVb0qfmmkmmsyy7j8oObk",
+            "artwork": "https://i.scdn.co/image/ab67616d00001e027fbe0d6db1e3f327a637a2bc"
+          }
+        ]
+      }
+    ]
+  }
+  

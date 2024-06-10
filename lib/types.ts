@@ -17,7 +17,7 @@ export interface SpotifyToken {
     expires_in: number
 }
 
-export type TrackCardVariant = 'search' | 'selection' | 'result'
+export type TrackCardVariant = 'search' | 'selection' | 'result' | 'demo'
 
 
 export type Feature = 'acousticness' | 'liveness' | 'danceability' | 'energy' | 'instrumentalness';
@@ -37,3 +37,13 @@ export interface MyLinks {
     rel: string
     target: string
 }
+
+
+export interface Slide {
+    input: SpotifyTrack[];
+    output: SpotifyTrack[];
+  }
+  
+export interface SlidesData {
+    slides: Slide[];
+  }
