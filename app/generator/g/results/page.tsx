@@ -34,7 +34,7 @@ export default function Results() {
     }, [])
 
     return (
-        <main className="col-span-2 h-[90vh] flex flex-col gap-6 p-2">
+        <main className="col-span-3 h-[90vh] flex flex-col gap-6 p-2">
             <div className="flex flex-row justify-center gap-4">
                 <Button onClick={() => getResults()}>More Songs</Button>
                 <Button onClick={() => startOver()}>Start Over</Button>
