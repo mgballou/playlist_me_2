@@ -17,6 +17,8 @@ import { SpotifyTrack, TrackCardVariant } from '@/lib/types'
 import { useTracksStore } from '@/context/providers/tracks-store-provider'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { forwardRef } from 'react'
+import { motion } from 'framer-motion'
 
 interface Props {
     track: SpotifyTrack
@@ -30,14 +32,14 @@ function formatNumber(input: number | undefined) {
     return Math.round(input * 100)
 }
 
-export default function TrackCard({ track, variant }: Props) {
+const MyTrackCard = forwardRef<HTMLDivElement, Props>(({ track, variant }, ref) => {
     const { tracks, addTrack, removeTrack } = useTracksStore((state) => state)
 
     const selected = tracks.includes(track.spotifyId)
 
     return (
         <>
-            <div className={clsx("flex flex-col", {'w-1/2': variant === 'demo'})}>
+            <div ref={ref} className={clsx("flex flex-col", {'w-1/2': variant === 'demo'})}>
                 <Card
                     className={clsx('flex flex-grow flex-col gap-2', {
                         'border border-white': selected && variant === 'search',
@@ -165,4 +167,10 @@ export default function TrackCard({ track, variant }: Props) {
             </div>
         </>
     )
-}
+})
+
+const TrackCard = motion(MyTrackCard)
+
+TrackCard.displayName = 'TrackCard';
+
+export default TrackCard;

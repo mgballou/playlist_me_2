@@ -13,9 +13,14 @@ export default function Demo() {
     const jsonData = fs.readFileSync(filePath, 'utf8');
     const results: SlidesData = JSON.parse(jsonData);
 
+    const animationDuration = 2;
+    const animationDelay = 0.3;
+
     return (<div className="w-1/2 p-4 text-center">
-        <Input tracks={results.slides[0].input}/>
+        <Input tracks={results.slides[0].input} animationDuration={animationDuration}
+                animationDelay={animationDelay}/>
         <Arrow/>
-        <Output tracks={results.slides[0].output}/>
+        <Output tracks={results.slides[0].output} animationDuration={animationDuration}
+                animationDelay={animationDelay}/>
     </div>)
 }
