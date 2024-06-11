@@ -70,6 +70,24 @@ export default function Adjustments() {
         setAdjustments(newAdjustments)
     }
 
+    function handleReset(){
+        setActiveFeatures({
+            acousticness: false,
+            liveness: false,
+            danceability: false,
+            energy: false,
+            instrumentalness: false,
+        })
+        setFeatureValues({
+            acousticness: [0],
+            liveness: [0],
+            danceability: [0],
+            energy: [0],
+            instrumentalness: [0],
+        })
+        setAdjustments({})
+    }
+
     // Update refs whenever state changes
     useEffect(() => {
         activeFeaturesRef.current = activeFeatures
@@ -89,8 +107,8 @@ export default function Adjustments() {
     return (
         <main className="col-span-3 h-[90vh] flex flex-col gap-6 p-2">
             <div className="flex flex-row justify-center gap-4">
-                <Button onClick={() => saveAdjustments()}>Save</Button>
-                <Button>Reset to Default</Button>
+                <Button onClick={() => saveAdjustments()} variant={'app1'}>Save</Button>
+                <Button onClick={() => handleReset()}variant={'app2'}>Reset to Default</Button>
             </div>
             <div className="flex h-full w-full flex-col gap-8 overflow-scroll bg-slate-600">
                 {features?.map((feature) => {

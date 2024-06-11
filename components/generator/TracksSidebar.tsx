@@ -72,17 +72,19 @@ export default function TracksSidebar() {
         <>
             <div
                 className={
-                    'flex col-span-1 h-[90vh] flex-col justify-start gap-6 p-2'
+                    'col-span-1 flex h-[90vh] flex-col justify-start gap-6 p-2'
                 }
             >
                 <div className="flex h-12 flex-row justify-between">
-                    <Button onClick={() => clearTracks()}>
+                    <Button onClick={() => handleNextPage()} variant={'app1'}>
+                        Next Step
+                    </Button>
+                    <Button onClick={() => clearTracks()} variant={'app2'}>
                         Clear Selections
                     </Button>
-                    <Button onClick={() => handleNextPage()}>Next Step</Button>
                 </div>
 
-                <div className="flex flex-col h-full gap-2 overflow-scroll bg-slate-600 items-center">
+                <div className="flex h-full flex-col items-center gap-2 overflow-scroll bg-slate-600">
                     {selections?.map((selection) => {
                         return (
                             <TrackCard

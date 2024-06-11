@@ -36,9 +36,9 @@ export default function Search() {
                         className=""
                     />
 
-                    <Button type="submit">Search</Button>
+                    <Button type="submit" variant={'app1'}>Search</Button>
                 </form>
-                <Button onClick={() => setSearchResults([])}>Clear</Button>
+                <Button onClick={() => setSearchResults([])} variant={'app2'}>Clear</Button>
             </div>
 
             <div className="flex h-full w-full flex-row flex-wrap gap-2 justify-center overflow-scroll bg-slate-600">
