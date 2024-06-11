@@ -8,11 +8,14 @@ interface Props {
     tracks: SpotifyTrack[]
     animationDuration: number;
     animationDelay: number;
+    isVisible: boolean
 }
 
-export default function Input({ tracks, animationDuration, animationDelay }: Props) {
+export default function Input({ tracks, animationDuration, animationDelay, isVisible }: Props) {
     return (
-        <div className="flex flex-row gap-2 p-4">
+
+        <>
+        {isVisible && <div className="flex flex-row gap-2 p-4" >
             {tracks.map((track, idx) => {
                 return (
                     <TrackCard
@@ -20,11 +23,14 @@ export default function Input({ tracks, animationDuration, animationDelay }: Pro
                         variant="demo"
                         track={track}
                         initial={{ x: '100vw' }}
-                        animate={{ x: 0 }}
+                        animate={{ x: 0 } }
                         transition={{ duration: animationDuration, delay: idx * animationDelay }}
+                        
                     />
                 )
             })}
-        </div>
+        </div>}
+        </>
+        
     )
 }

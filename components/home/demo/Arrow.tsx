@@ -2,13 +2,19 @@
 
 import { motion } from 'framer-motion'
 
-export default function Arrow() {
+interface Props {
+    isVisible: boolean
+}
+
+export default function Arrow({isVisible} : Props) {
     return (
-        <motion.div
+        <>
+        {isVisible && <motion.div
             className="flex w-full justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{delay: 3}}
+            
         >
             <motion.div
                 animate={{ y: [0, -10, 0] }}
@@ -34,6 +40,11 @@ export default function Arrow() {
                     />
                 </svg>
             </motion.div>
-        </motion.div>
+        </motion.div>}
+        
+        
+        </>
+
+        
     )
 }
