@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-export const cache = 'no-store'
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
     const clientId = process.env.SPOTIFY_CLIENT_ID

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { SpotifyTrack } from '@/lib/types'
 import { useRouter } from 'next/navigation'
 
-export default async function Generator() {
+export default function Generator() {
     const router = useRouter()
 
     return (
@@ -37,7 +37,7 @@ export default async function Generator() {
 
                     <div className="border-x border-emerald-500 p-4">
                         <p>
-                            Here, you'll find different qualities of the songs
+                            Here, you will find different qualities of the songs
                             you can tweak to adjust your results. Each of these
                             adjustments are optional, and represent musical
                             features within a song.

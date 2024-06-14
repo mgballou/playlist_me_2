@@ -169,8 +169,8 @@ const MyTrackCard = forwardRef<HTMLDivElement, Props>(({ track, variant }, ref) 
     )
 })
 
-const TrackCard = motion(MyTrackCard)
+MyTrackCard.displayName = 'TrackCard';
 
-TrackCard.displayName = 'TrackCard';
+const TrackCard = motion(MyTrackCard)
 
 export default TrackCard;

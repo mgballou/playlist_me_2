@@ -1,7 +1,7 @@
 'use client'
 
 // React hooks
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 // External libraries
 import clsx from 'clsx'
@@ -45,28 +45,28 @@ export default function TracksSidebar() {
         }
     }
 
-    async function getSelections() {
+    const getSelections = useCallback(async () => {
         if (tracks.length > 0) {
-            try {
-                const response = await getTrackData(tracks)
-                if (Array.isArray(response)) {
-                    setSelections(response)
-                } else {
-                    console.error('Response is not an array:', response)
-                    setSelections([])
-                }
-            } catch (error) {
-                console.error('Error fetching track data:', error)
-                setSelections([])
+          try {
+            const response = await getTrackData(tracks);
+            if (Array.isArray(response)) {
+              setSelections(response);
+            } else {
+              console.error('Response is not an array:', response);
+              setSelections([]);
             }
+          } catch (error) {
+            console.error('Error fetching track data:', error);
+            setSelections([]);
+          }
         } else {
-            setSelections([])
+          setSelections([]);
         }
-    }
+      }, [tracks]);
 
     useEffect(() => {
         getSelections()
-    }, [tracks])
+    }, [tracks, getSelections])
 
     return (
         <>

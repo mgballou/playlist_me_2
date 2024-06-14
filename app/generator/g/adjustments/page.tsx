@@ -102,7 +102,7 @@ export default function Adjustments() {
         return () => {
             saveAdjustments()
         }
-    }, [])
+    })
 
     return (
         <main className="col-span-3 h-[90vh] flex flex-col gap-6 p-2">
