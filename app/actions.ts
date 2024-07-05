@@ -3,8 +3,9 @@
 import { Feature, SpotifyTrack } from '@/lib/types'
 
 export async function getAPIToken() {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     return (
-        await fetch('/api/spotify/auth', {
+        await fetch(`${baseUrl}/api/spotify/auth`, {
             cache: 'no-store',
         })
     ).json()
