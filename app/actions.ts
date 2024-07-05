@@ -4,7 +4,7 @@ import { Feature, SpotifyTrack } from '@/lib/types'
 
 export async function getAPIToken() {
     return (
-        await fetch('http://localhost:3000/api/spotify/auth', {
+        await fetch('/api/spotify/auth', {
             cache: 'no-store',
         })
     ).json()
