@@ -36,6 +36,7 @@ export async function GET() {
         }
 
         const token = await res.json()
+        console.log(token)
 
         return new Response(JSON.stringify(token.access_token), { status: 200 })
     } catch (error) {
