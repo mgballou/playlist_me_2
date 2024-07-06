@@ -14,7 +14,6 @@ import {
 import { MyLinks } from '@/lib/types'
 import Link from 'next/link'
 
-
 export default function Footer() {
     const links: MyLinks[] = [
         {
@@ -46,7 +45,7 @@ export default function Footer() {
     return (
         <div className="flex h-20 w-full flex-col items-center border-t-4 border-emerald-400 p-4">
             <NavigationMenu>
-                <NavigationMenuList className="space-x-8">
+                <NavigationMenuList className="space-x-2 md:space-x-8">
                     {links.map((link) => {
                         return (
                             <NavigationMenuItem key={link.text}>
