@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
+    console.log(`It is currently ${new Date()} and a request was made for a new auth token.`)
     const clientId = process.env.SPOTIFY_CLIENT_ID
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
 
