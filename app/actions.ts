@@ -62,7 +62,7 @@ export async function getSearchResults(query: string) {
 
         return results
     } catch (error) {
-        console.log(error)
+        console.log(`Error in search results. ${error}`)
     }
 }
 
