@@ -30,9 +30,8 @@ export async function getSearchResults(query: string) {
 
         if (!response.ok) {
             const errMessage = (await response.json()).error.message
-            console.log(errMessage)
             console.log(await response.json())
-            throw new Error(await response.json())
+            throw new Error(errMessage)
         }
 
         const responseData = await response.json()
