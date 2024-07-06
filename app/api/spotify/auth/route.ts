@@ -21,6 +21,7 @@ export async function GET() {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: body.toString(),
+        cache: 'no-store',
     }
 
     try {
