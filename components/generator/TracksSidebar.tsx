@@ -22,6 +22,8 @@ import { useTracksStore } from '@/context/providers/tracks-store-provider'
 // Application types
 import { SpotifyTrack } from '@/lib/types'
 
+import { useMediaQuery } from '@/lib/hooks'
+
 export default function TracksSidebar() {
     const pathname = usePathname()
     const router = useRouter()
@@ -29,6 +31,8 @@ export default function TracksSidebar() {
     const { tracks, addTrack, removeTrack, clearTracks } = useTracksStore(
         (state) => state
     )
+
+    const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 
     const [selections, setSelections] = useState<SpotifyTrack[]>([])
 
@@ -47,22 +51,22 @@ export default function TracksSidebar() {
 
     const getSelections = useCallback(async () => {
         if (tracks.length > 0) {
-          try {
-            const response = await getTrackData(tracks);
-            if (Array.isArray(response)) {
-              setSelections(response);
-            } else {
-              console.error('Response is not an array:', response);
-              setSelections([]);
+            try {
+                const response = await getTrackData(tracks)
+                if (Array.isArray(response)) {
+                    setSelections(response)
+                } else {
+                    console.error('Response is not an array:', response)
+                    setSelections([])
+                }
+            } catch (error) {
+                console.error('Error fetching track data:', error)
+                setSelections([])
             }
-          } catch (error) {
-            console.error('Error fetching track data:', error);
-            setSelections([]);
-          }
         } else {
-          setSelections([]);
+            setSelections([])
         }
-      }, [tracks]);
+    }, [tracks])
 
     useEffect(() => {
         getSelections()
