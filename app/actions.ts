@@ -29,8 +29,7 @@ export async function getSearchResults(query: string) {
         const response = await fetch(url + '?' + params.toString(), options)
 
         if (!response.ok) {
-            
-            throw new Error((await response.json()).error)
+            throw new Error((await response.json()).message)
         }
 
         const responseData = await response.json()
