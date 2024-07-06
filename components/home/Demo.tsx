@@ -10,7 +10,7 @@ export default function Demo() {
     const results: SlidesData = JSON.parse(jsonData)
 
     return (
-        <div className="w-1/2 p-4 text-center max-h-3/4">
+        <div className="md:w-1/2 p-4 text-center max-h-3/4">
             <DemoCarousel slides={results.slides}/>
         </div>
     )

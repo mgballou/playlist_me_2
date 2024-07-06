@@ -7,7 +7,7 @@ interface Props {
 
 export default function CTA() {
     return (
-        <div className=" h-screen flex flex-col justify-center items-center w-1/2 p-4 ">
+        <div className=" h-screen flex flex-col justify-center items-center md:w-1/2 p-4 ">
             <div className=''>
                 <h1 className="text-3xl font-bold tracking-wide">
                     A <span className="italic text-emerald-400">better</span>{' '}
