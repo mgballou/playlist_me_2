@@ -29,6 +29,7 @@ export async function getSearchResults(query: string) {
         const response = await fetch(url + '?' + params.toString(), options)
 
         if (!response.ok) {
+            console.log(await response.json)
             throw new Error(await response.json())
         }
 
@@ -62,7 +63,7 @@ export async function getSearchResults(query: string) {
 
         return results
     } catch (error) {
-        console.log(`Error in search results. ${Object.keys(error as Object).join(', ')}`)
+        console.log(`Error in search results. ${error}`)
     }
 }
 
