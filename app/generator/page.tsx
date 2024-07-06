@@ -10,13 +10,17 @@ export default function Generator() {
     const router = useRouter()
 
     return (
-        <section className="h-full p-12">
-            <h3 className="text-center text-2xl underline my-4">HOW IT WORKS</h3>
+        <section className="h-full p-6 md:p-12">
+            <h3 className="my-4 text-center text-2xl underline">
+                HOW IT WORKS
+            </h3>
 
-            <div className="grid h-full w-full grid-cols-1 md:grid-cols-3 gap-16 rounded-lg bg-slate-600/40 p-12 text-lg">
-                <div className="col-span-1 flex flex-col gap-8">
+            <div className="grid h-full w-full grid-cols-1 gap-16 rounded-lg bg-slate-600/40 p-6 text-lg md:grid-cols-3 md:p-12">
+                <div className="col-span-1 flex flex-col gap-4 md:gap-8">
                     <h4 className="text-center text-xl">
-                        <span className="font-bold text-indigo-300">Step 1: </span>
+                        <span className="font-bold text-indigo-300">
+                            Step 1:{' '}
+                        </span>
                         Search
                     </h4>
 
@@ -29,9 +33,11 @@ export default function Generator() {
                         </p>
                     </div>
                 </div>
-                <div className="col-span-1 flex flex-col gap-8">
+                <div className="col-span-1 flex flex-col gap-4 md:gap-8">
                     <h4 className="text-center text-xl">
-                        <span className="font-bold text-indigo-300">Step 2: </span>
+                        <span className="font-bold text-indigo-300">
+                            Step 2:{' '}
+                        </span>
                         Adjustments
                     </h4>
 
@@ -44,17 +50,19 @@ export default function Generator() {
                         </p>
                     </div>
                 </div>
-                <div className="col-span-1 flex flex-col gap-8">
+                <div className="col-span-1 flex flex-col gap-4 md:gap-8">
                     <h4 className="text-center text-xl">
-                        <span className="font-bold text-indigo-300">Step 3: </span>
+                        <span className="font-bold text-indigo-300">
+                            Step 3:{' '}
+                        </span>
                         Results
                     </h4>
                     <div className="border-x border-emerald-500 p-4">
                         <p>
                             Your selected songs and any adjustments you make
-                            will retreive recommended tracks from Spotify. Follow
-                            the link to listen or save these songs to your
-                            personal library.
+                            will retreive recommended tracks from Spotify.
+                            Follow the link to listen or save these songs to
+                            your personal library.
                         </p>
                     </div>
                 </div>
