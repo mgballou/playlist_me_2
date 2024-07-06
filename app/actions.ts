@@ -2,6 +2,8 @@
 
 import { Feature, SpotifyTrack } from '@/lib/types'
 
+export const dynamic = 'force-dynamic'
+
 export async function getAPIToken() {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     return (

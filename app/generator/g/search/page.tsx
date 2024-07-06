@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input'
 import { SpotifyTrack } from '@/lib/types'
 import TrackCard from '@/components/shared/TrackCard'
 
+export const dynamic = 'force-dynamic'
+
 export default function Search() {
     const [formData, setFormData] = useState({
         query: '',
