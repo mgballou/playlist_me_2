@@ -22,8 +22,6 @@ import { useTracksStore } from '@/context/providers/tracks-store-provider'
 // Application types
 import { SpotifyTrack } from '@/lib/types'
 
-import { useMediaQuery } from '@/lib/hooks'
-
 export default function TracksSidebar() {
     const pathname = usePathname()
     const router = useRouter()
@@ -31,8 +29,6 @@ export default function TracksSidebar() {
     const { tracks, addTrack, removeTrack, clearTracks } = useTracksStore(
         (state) => state
     )
-
-    const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 
     const [selections, setSelections] = useState<SpotifyTrack[]>([])
 
