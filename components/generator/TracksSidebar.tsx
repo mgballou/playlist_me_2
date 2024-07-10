@@ -75,11 +75,19 @@ export default function TracksSidebar() {
                     'col-span-1 flex h-[90vh] flex-col justify-start gap-6 p-2'
                 }
             >
-                <div className="flex h-12 flex-row justify-between">
-                    <Button onClick={() => handleNextPage()} variant={'app1'}>
+                <div className="flex justify-between lg:flex-row">
+                    <Button
+                        onClick={() => handleNextPage()}
+                        variant={'app1'}
+                        size={'sm'}
+                    >
                         Next Step
                     </Button>
-                    <Button onClick={() => clearTracks()} variant={'app2'}>
+                    <Button
+                        onClick={() => clearTracks()}
+                        variant={'app2'}
+                        size={'sm'}
+                    >
                         Clear Selections
                     </Button>
                 </div>

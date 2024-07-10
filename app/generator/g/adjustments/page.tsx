@@ -4,8 +4,7 @@ import FeatureSlider from '@/components/generator/FeatureSlider'
 import { Button } from '@/components/ui/button'
 import { useAdjustmentsStore } from '@/context/providers/adjustments-store-provider'
 import { Feature } from '@/lib/types'
-
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
 
 export default function Adjustments() {
     const features: Feature[] = [
@@ -20,19 +19,15 @@ export default function Adjustments() {
         (state) => state
     )
 
-    const [activeFeatures, setActiveFeatures] = useState<
-        Record<Feature, boolean>
-    >({
+    const initialActiveFeatures = {
         acousticness: !!adjustments.acousticness,
         liveness: !!adjustments.liveness,
         danceability: !!adjustments.danceability,
         energy: !!adjustments.energy,
         instrumentalness: !!adjustments.instrumentalness,
-    })
+    }
 
-    const [featureValues, setFeatureValues] = useState<
-        Record<Feature, number[]>
-    >({
+    const initialFeatureValues = {
         acousticness: [adjustments.acousticness ? adjustments.acousticness : 0],
         liveness: [adjustments.liveness ? adjustments.liveness : 0],
         danceability: [adjustments.danceability ? adjustments.danceability : 0],
@@ -40,22 +35,27 @@ export default function Adjustments() {
         instrumentalness: [
             adjustments.instrumentalness ? adjustments.instrumentalness : 0,
         ],
-    })
+    }
+
+    const [activeFeatures, setActiveFeatures] = useState(initialActiveFeatures)
+    const [featureValues, setFeatureValues] = useState(initialFeatureValues)
+
     const activeFeaturesRef = useRef(activeFeatures)
     const featureValuesRef = useRef(featureValues)
+    const saveAdjustmentsRef = useRef<() => void>(() => {})
 
-    function toggleFeature(feature: Feature) {
+    const toggleFeature = useCallback((feature: Feature) => {
         setActiveFeatures((prevFeatures) => ({
             ...prevFeatures,
             [feature]: !prevFeatures[feature],
         }))
-    }
+    }, [])
 
-    function updateValue(feature: Feature, value: number[]) {
+    const updateValue = useCallback((feature: Feature, value: number[]) => {
         setFeatureValues((prevValues) => ({ ...prevValues, [feature]: value }))
-    }
+    }, [])
 
-    function saveAdjustments() {
+    const saveAdjustments = useCallback(() => {
         const newAdjustments: Partial<Record<Feature, number>> = {}
 
         const currentActiveFeatures = activeFeaturesRef.current
@@ -68,9 +68,9 @@ export default function Adjustments() {
         }
 
         setAdjustments(newAdjustments)
-    }
+    }, [features, setAdjustments])
 
-    function handleReset(){
+    const handleReset = useCallback(() => {
         setActiveFeatures({
             acousticness: false,
             liveness: false,
@@ -86,9 +86,8 @@ export default function Adjustments() {
             instrumentalness: [0],
         })
         setAdjustments({})
-    }
+    }, [setAdjustments])
 
-    // Update refs whenever state changes
     useEffect(() => {
         activeFeaturesRef.current = activeFeatures
     }, [activeFeatures])
@@ -98,17 +97,21 @@ export default function Adjustments() {
     }, [featureValues])
 
     useEffect(() => {
-        // Sync on component unmount
+        saveAdjustmentsRef.current = saveAdjustments
+    }, [saveAdjustments])
+
+    // Sync on component unmount
+    useEffect(() => {
         return () => {
-            saveAdjustments()
+            saveAdjustmentsRef.current()
         }
-    })
+    }, [])
 
     return (
         <main className="col-span-3 h-[90vh] flex flex-col gap-6 p-2">
             <div className="flex flex-row justify-center gap-4">
-                <Button onClick={() => saveAdjustments()} variant={'app1'}>Save</Button>
-                <Button onClick={() => handleReset()}variant={'app2'}>Reset to Default</Button>
+                <Button onClick={saveAdjustments} variant={'app1'}>Save</Button>
+                <Button onClick={handleReset} variant={'app2'}>Reset to Default</Button>
             </div>
             <div className="flex h-full w-full flex-col gap-8 overflow-scroll bg-slate-600">
                 {features?.map((feature) => {
