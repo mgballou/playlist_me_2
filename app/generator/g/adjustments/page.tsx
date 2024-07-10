@@ -109,11 +109,11 @@ export default function Adjustments() {
 
     return (
         <main className="col-span-3 h-[90vh] flex flex-col gap-6 p-2">
-            <div className="flex flex-row justify-center gap-4">
-                <Button onClick={saveAdjustments} variant={'app1'}>Save</Button>
-                <Button onClick={handleReset} variant={'app2'}>Reset to Default</Button>
+            <div className="flex flex-row justify-between gap-4">
+                <Button onClick={saveAdjustments} variant={'app1'} size={'sm'}>Save</Button>
+                <Button onClick={handleReset} variant={'app2'} size={'sm'}>Reset</Button>
             </div>
-            <div className="flex h-full w-full flex-col gap-8 overflow-scroll bg-slate-600">
+            <div className="flex h-full w-full flex-col gap-2 md:gap-6 overflow-scroll bg-slate-600 p-4">
                 {features?.map((feature) => {
                     return (
                         <FeatureSlider

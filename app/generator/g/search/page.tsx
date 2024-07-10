@@ -26,16 +26,16 @@ export default function Search() {
     }
 
     return (
-        <section className="col-span-3 flex h-[90vh] w-full flex-col gap-6 p-2">
+        <section className="col-span-3 flex h-[90vh] w-full flex-col gap-6">
             <div className="flex flex-row gap-4">
-                <form className="inline-flex w-full" onSubmit={handleSearch}>
+                <form className="flex flex-row justify-end items-center w-3/4" onSubmit={handleSearch}>
                     <Input
                         type="search"
                         name="query"
                         value={formData.query}
                         onChange={handleFormChange}
                         placeholder="find tracks..."
-                        className=""
+                        className="w-3/4"
                     />
 
                     <Button type="submit" variant={'app1'} size={'sm'}>

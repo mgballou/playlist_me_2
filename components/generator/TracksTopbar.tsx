@@ -116,7 +116,7 @@ export default function TracksTopbar() {
 
     return (
         <div className="grid grid-cols-12 gap-1 p-2">
-            <div className="col-span-9 grid grid-cols-5 gap-4 p-4">
+            <div className="col-span-9 grid grid-cols-5 gap-3 p-3">
                 {selections?.map((selection) => {
                     return (
                         <Circle

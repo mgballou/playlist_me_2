@@ -21,7 +21,7 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={cn(
-                    'dark mx-auto max-w-7xl bg-background font-sans antialiased',
+                    'dark mx-auto max-w-7xl bg-background font-sans antialiased box-border ',
                     fontSans.variable
                 )}
             >

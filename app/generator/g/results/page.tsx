@@ -35,9 +35,9 @@ export default function Results() {
 
     return (
         <main className="col-span-3 h-[90vh] flex flex-col gap-6 p-2">
-            <div className="flex flex-row justify-center gap-4">
-                <Button onClick={() => getResults()} variant={'app1'}>More Songs</Button>
-                <Button onClick={() => startOver()} variant={'app2'}>Start Over</Button>
+            <div className="flex flex-row justify-between gap-4">
+                <Button onClick={() => getResults()} variant={'app1'} size={'sm'}>More Songs</Button>
+                <Button onClick={() => startOver()} variant={'app2'} size={'sm'}>Start Over</Button>
             </div>
 
             <div className="flex h-full w-full flex-row flex-wrap justify-center gap-2 overflow-scroll bg-slate-600">

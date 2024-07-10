@@ -41,9 +41,9 @@ const MyTrackCard = forwardRef<HTMLDivElement, Props>(({ track, variant }, ref) 
         <>
             <div ref={ref} className={clsx("flex flex-col", {'w-1/2': variant === 'demo'})}>
                 <Card
-                    className={clsx('flex flex-grow flex-col gap-2', {
+                    className={clsx('flex flex-grow flex-col gap-2 ', {
                         'border border-white': selected && variant === 'search',
-                        'w-72': variant !== 'demo',
+                        'w-48 sm:w-64 lg:w-72': variant !== 'demo',
                     })}
                 >
                     <div className={clsx("flex flex-grow border-b-4 border-slate-700", {'flex-row': variant !== 'demo', 'flex-col items-center': variant === 'demo'})}>

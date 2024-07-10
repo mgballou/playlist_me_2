@@ -19,7 +19,7 @@ export default function Subnav() {
 
     return (
         <>
-            <Breadcrumb>
+            <Breadcrumb className='my-2'>
                 <BreadcrumbList>
                     {links.map((link, idx) => {
                         const url = '/generator/g/' + link.toLowerCase()

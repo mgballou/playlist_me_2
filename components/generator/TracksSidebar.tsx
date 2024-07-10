@@ -92,7 +92,7 @@ export default function TracksSidebar() {
                     </Button>
                 </div>
 
-                <div className="flex h-full flex-col items-center gap-2 overflow-scroll bg-slate-600">
+                <div className="flex h-full flex-col items-center gap-2 overflow-scroll bg-slate-600 ">
                     {selections?.map((selection) => {
                         return (
                             <TrackCard
