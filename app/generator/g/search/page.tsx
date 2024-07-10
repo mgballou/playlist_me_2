@@ -38,12 +38,20 @@ export default function Search() {
                         className=""
                     />
 
-                    <Button type="submit" variant={'app1'}>Search</Button>
+                    <Button type="submit" variant={'app1'} size={'sm'}>
+                        Search
+                    </Button>
                 </form>
-                <Button onClick={() => setSearchResults([])} variant={'app2'}>Clear</Button>
+                <Button
+                    onClick={() => setSearchResults([])}
+                    variant={'app2'}
+                    size={'sm'}
+                >
+                    Clear
+                </Button>
             </div>
 
-            <div className="flex h-full w-full flex-row flex-wrap gap-2 justify-center overflow-scroll bg-slate-600">
+            <div className="flex h-full w-full flex-row flex-wrap justify-center gap-2 overflow-scroll bg-slate-600">
                 {searchResults?.map((track, idx) => {
                     return (
                         <TrackCard

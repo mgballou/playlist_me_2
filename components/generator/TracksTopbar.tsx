@@ -40,10 +40,8 @@ interface CircleProps {
 }
 
 function Circle({ isSelection, track }: CircleProps) {
-    console.log(track?.artwork)
     const bgImageStyle =
         isSelection && track ? { backgroundImage: `url(${track.artwork})` } : {}
-    console.log(bgImageStyle)
 
     return (
         <HoverCard>

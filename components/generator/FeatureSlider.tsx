@@ -5,6 +5,7 @@ import { FeatureSliderProps } from "@/lib/types"
 import { Slider } from "../ui/slider"
 import { Label } from "../ui/label"
 import { Switch } from "../ui/switch"
+import { useCallback } from "react"
 
 export default function FeatureSlider({
     feature,
@@ -14,9 +15,13 @@ export default function FeatureSlider({
     updateValue,
 }: FeatureSliderProps) {
 
-    function handleChange(value: number[]){
+    const handleChange = useCallback((value: number[]) => {
         updateValue(feature, value)
-    }
+    }, [feature, updateValue])
+
+    const handleToggle = useCallback(() => {
+        toggleFeature(feature)
+    }, [feature, toggleFeature])
 
     return (
         <div className="text-center">
@@ -26,7 +31,7 @@ export default function FeatureSlider({
                 <p>{value}</p>
                 <Switch
                     checked={isActive}
-                    onCheckedChange={() => toggleFeature(feature)}
+                    onCheckedChange={handleToggle}
                 />
             </div>
         </div>
