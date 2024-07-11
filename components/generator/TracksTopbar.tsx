@@ -1,7 +1,7 @@
 'use client'
 
 // React hooks
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 
 // External libraries
 import clsx from 'clsx'
@@ -39,9 +39,22 @@ interface CircleProps {
     track?: SpotifyTrack
 }
 
+type HoverCardContentElement = HTMLDivElement & {
+    open: boolean
+}
+
 function Circle({ isSelection, track }: CircleProps) {
+    const hoverContentRef = useRef<HoverCardContentElement>(null)
+
     const bgImageStyle =
         isSelection && track ? { backgroundImage: `url(${track.artwork})` } : {}
+
+    function handleClick() {
+        const hoverContent = hoverContentRef.current
+        if (hoverContent) {
+            hoverContent.open = !hoverContent.open
+        }
+    }
 
     return (
         <HoverCard>
@@ -55,8 +68,12 @@ function Circle({ isSelection, track }: CircleProps) {
                             'bg-slate-500': isSelection === false,
                         }
                     )}
+                    onClick={() => handleClick()}
                 ></HoverCardTrigger>
-                <HoverCardContent className="border-none bg-transparent">
+                <HoverCardContent
+                    className="border-none bg-transparent"
+                    ref={hoverContentRef}
+                >
                     {isSelection && track ? (
                         <TrackCard track={track} variant={'selection'} />
                     ) : (
