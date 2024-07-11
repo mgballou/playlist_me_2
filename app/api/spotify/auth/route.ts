@@ -20,7 +20,7 @@ export async function GET() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            cache: 'no-store',
+            'Cache-Control': 'no-store',
         },
         body: body.toString(),
     }
