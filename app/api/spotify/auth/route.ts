@@ -1,10 +1,11 @@
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
+import { NextRequest, NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
-    console.log(`It is currently ${new Date()} and a request was made for a new auth token.`)
+    console.log(
+        `It is currently ${new Date()} and a request was made for a new auth token.`
+    )
     const clientId = process.env.SPOTIFY_CLIENT_ID
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
 
@@ -22,7 +23,6 @@ export async function GET() {
             cache: 'no-store',
         },
         body: body.toString(),
-        
     }
 
     try {
@@ -31,21 +31,24 @@ export async function GET() {
         if (!res.ok) {
             const errorData = await res.text()
             console.error(`Error fetching token: ${res.status} - ${errorData}`)
-            return new Response(
+            return new NextResponse(
                 JSON.stringify({ message: 'Failed to fetch token' }),
-                { status: res.status }
+                { status: res.status, headers: { 'Cache-Control': 'no-store' } }
             )
         }
 
         const token = await res.json()
         console.log(token)
 
-        return new Response(JSON.stringify(token.access_token), { status: 200 })
+        return new NextResponse(JSON.stringify(token.access_token), {
+            status: 200,
+            headers: { 'Cache-Control': 'no-store' },
+        })
     } catch (error) {
         console.error('Error during token fetch:', error)
-        return new Response(
+        return new NextResponse(
             JSON.stringify({ message: 'Internal Server Error' }),
-            { status: 500 }
+            { status: 500, headers: { 'Cache-Control': 'no-store' } }
         )
     }
 }
