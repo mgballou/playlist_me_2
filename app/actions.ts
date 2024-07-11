@@ -3,7 +3,7 @@
 import { Feature, SpotifyTrack } from '@/lib/types'
 
 export async function getAPIToken() {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
     const url = `${baseUrl}api/spotify/auth`
     return (
         await fetch(url, {
@@ -31,7 +31,7 @@ export async function getSearchResults(query: string) {
 
         if (!response.ok) {
             const errMessage = (await response.json()).error.message
-            console.log(await response.json())
+            console.log('Json-d response', await response.json())
             throw new Error(errMessage)
         }
 
@@ -135,7 +135,10 @@ export async function getTracksAdditionalFeatures(trackIds: string[]) {
     }
 }
 
-export async function getRecommendationsData(trackIds: string[], adjustments?: Partial<Record<Feature, number>>) {
+export async function getRecommendationsData(
+    trackIds: string[],
+    adjustments?: Partial<Record<Feature, number>>
+) {
     // this entire thing can just be fetched in a server component instead
 
     const token = await getAPIToken()
@@ -146,17 +149,18 @@ export async function getRecommendationsData(trackIds: string[], adjustments?: P
 
     const targetAdjustments: Record<string, number> = {}
 
-    if (adjustments){
-        for (const key in adjustments){
+    if (adjustments) {
+        for (const key in adjustments) {
             const featureKey = key as Feature
             if (adjustments[featureKey] !== undefined) {
-                targetAdjustments[`target_${featureKey}`] = (adjustments[featureKey]!/100)
+                targetAdjustments[`target_${featureKey}`] =
+                    adjustments[featureKey]! / 100
             }
         }
     }
 
     // TODO: remove any
-    const baseParams ={
+    const baseParams = {
         limit: 6,
         market: 'US',
         seed_artists: '',
@@ -167,9 +171,9 @@ export async function getRecommendationsData(trackIds: string[], adjustments?: P
     const paramsObject = {
         ...baseParams,
         ...(Object.keys(targetAdjustments).length > 0 ? targetAdjustments : {}),
-    };
+    }
 
-    const params = new URLSearchParams(paramsObject as any);
+    const params = new URLSearchParams(paramsObject as any)
 
     const options = {
         method: 'GET',
