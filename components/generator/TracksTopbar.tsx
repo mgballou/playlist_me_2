@@ -67,7 +67,14 @@ function Circle({ isSelection, track }: CircleProps) {
 
     return (
         <HoverCard {...hoverCardProps}>
-            <div className="col-span-1 flex items-center justify-center">
+            <div
+                className={clsx(
+                    'col-span-1 flex cursor-pointer items-center justify-center',
+                    {
+                        'rounded-lg border-2 border-white': isOpen,
+                    }
+                )}
+            >
                 <HoverCardTrigger
                     style={bgImageStyle}
                     className={clsx(
@@ -77,8 +84,6 @@ function Circle({ isSelection, track }: CircleProps) {
                             'bg-slate-500': isSelection === false,
                         }
                     )}
-                    // onMouseEnter={handleMouseEnter}
-                    // onMouseLeave={handleMouseLeave}
                     onClick={handleClick}
                 ></HoverCardTrigger>
                 <HoverCardContent className="border-none bg-transparent">
