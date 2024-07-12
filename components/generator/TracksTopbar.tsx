@@ -71,7 +71,8 @@ function Circle({ isSelection, track }: CircleProps) {
                 className={clsx(
                     'col-span-1 flex cursor-pointer items-center justify-center',
                     {
-                        'rounded-lg border-2 border-white': isOpen,
+                        'rounded-lg border-2 border-white':
+                            isOpen && isSelection,
                     }
                 )}
             >
