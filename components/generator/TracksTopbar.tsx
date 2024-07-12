@@ -49,7 +49,7 @@ function Circle({ isSelection, track }: CircleProps) {
     const bgImageStyle =
         isSelection && track ? { backgroundImage: `url(${track.artwork})` } : {}
 
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState<boolean | null>(null)
 
     const handleMouseEnter = () => {
         setIsOpen(true)
@@ -63,8 +63,10 @@ function Circle({ isSelection, track }: CircleProps) {
         setIsOpen((prev) => !prev)
     }
 
+    const hoverCardProps = isOpen ? { open: isOpen } : null
+
     return (
-        <HoverCard open={isOpen}>
+        <HoverCard {...hoverCardProps}>
             <div className="col-span-1 flex items-center justify-center">
                 <HoverCardTrigger
                     style={bgImageStyle}
@@ -75,8 +77,8 @@ function Circle({ isSelection, track }: CircleProps) {
                             'bg-slate-500': isSelection === false,
                         }
                     )}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                    // onMouseEnter={handleMouseEnter}
+                    // onMouseLeave={handleMouseLeave}
                     onClick={handleClick}
                 ></HoverCardTrigger>
                 <HoverCardContent className="border-none bg-transparent">
