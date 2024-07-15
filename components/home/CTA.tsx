@@ -1,9 +1,7 @@
+import { ReactNode } from 'react'
 import { Button } from '../ui/button'
 import CTAButton from './CTAButton'
-
-interface Props {
-    props: any
-}
+import InfoButton from './InfoButton'
 
 export default function CTA() {
     return (
@@ -19,13 +17,7 @@ export default function CTA() {
                 </p>
                 <div className="mt-8 space-x-4">
                     <CTAButton />
-                    <Button
-                        className="hover:bg-emerald-200/25"
-                        variant={'outline'}
-                        size={'xl'}
-                    >
-                        info
-                    </Button>
+                    <InfoButton />
                 </div>
             </div>
         </div>
